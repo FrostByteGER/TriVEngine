@@ -4,15 +4,15 @@
 #include <stdexcept>
 #include <iostream>
 
-
 int main() {
-	TriV::TriVEngine app;
+	TriV::TriVEngine engine;
 
 	try {
-		app.run();
+		engine.initiateEngine();
 	}
 	catch (const std::runtime_error& e) {
 		std::cerr << e.what() << std::endl;
+		std::cin.get();
 		return EXIT_FAILURE;
 	}
 

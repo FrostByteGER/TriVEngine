@@ -13,7 +13,7 @@ namespace TriV
 		})
 		{
 		}
-	
+
 		VDeleter(std::function<void(T, VkAllocationCallbacks*)> deletef)
 		{
 			object = VK_NULL_HANDLE;
@@ -22,7 +22,7 @@ namespace TriV
 				deletef(obj, nullptr);
 			};
 		}
-	
+
 		VDeleter(const VDeleter<VkInstance>& instance, std::function<void(VkInstance, T, VkAllocationCallbacks*)> deletef)
 		{
 			object = VK_NULL_HANDLE;
@@ -31,7 +31,7 @@ namespace TriV
 				deletef(instance, obj, nullptr);
 			};
 		}
-	
+
 		VDeleter(const VDeleter<VkDevice>& device, std::function<void(VkDevice, T, VkAllocationCallbacks*)> deletef)
 		{
 			object = VK_NULL_HANDLE;
@@ -40,27 +40,27 @@ namespace TriV
 				deletef(device, obj, nullptr);
 			};
 		}
-	
+
 		~VDeleter()
 		{
 			cleanup();
 		}
-	
+
 		T* operator &()
 		{
 			cleanup();
 			return &object;
 		}
-	
-		operator T()
+
+		operator T() const
 		{
 			return object;
 		}
-	
+
 	private:
 		T object;
 		std::function<void(T)> deleter;
-	
+
 		void cleanup()
 		{
 			if (object != VK_NULL_HANDLE)
