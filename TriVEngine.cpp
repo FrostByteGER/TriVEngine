@@ -168,7 +168,7 @@ namespace TriV
 		}
 	}
 
-	uint64_t TriVEngine::rateDeviceSuitability(VkPhysicalDevice device)
+	uint64_t TriVEngine::rateDeviceSuitability(VkPhysicalDevice device) const
 	{
 		VkPhysicalDeviceProperties deviceProperties;
 		VkPhysicalDeviceFeatures deviceFeatures;
@@ -209,7 +209,7 @@ namespace TriV
 		return score;
 	}
 
-	TriVEngine::QueueFamilyIndices TriVEngine::findQueueFamilies(VkPhysicalDevice device)
+	TriVEngine::QueueFamilyIndices TriVEngine::findQueueFamilies(VkPhysicalDevice device) const
 	{
 		QueueFamilyIndices indices;
 
@@ -246,7 +246,7 @@ namespace TriV
 		return indices;
 	}
 
-	bool TriVEngine::checkDeviceExtensionSupport(VkPhysicalDevice device)
+	bool TriVEngine::checkDeviceExtensionSupport(VkPhysicalDevice device) const
 	{
 		std::cout << "\t" << "CHECKING FOR SUPPORTED EXTENSIONS" << std::endl;
 		uint32_t extensionCount = 0;
@@ -262,7 +262,7 @@ namespace TriV
 		return requiredExtensions.empty();
 	}
 
-	TriVEngine::SwapChainSupportDetails TriVEngine::querySwapChainSupport(VkPhysicalDevice device)
+	TriVEngine::SwapChainSupportDetails TriVEngine::querySwapChainSupport(VkPhysicalDevice device) const
 	{
 		SwapChainSupportDetails details;
 		vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &details.capabilities);
@@ -287,7 +287,7 @@ namespace TriV
 		return details;
 	}
 
-	VkSurfaceFormatKHR TriVEngine::chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats)
+	VkSurfaceFormatKHR TriVEngine::chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats) const
 	{
 		if(availableFormats.size() == 1 && availableFormats[0].format == VK_FORMAT_UNDEFINED)
 		{
@@ -307,7 +307,7 @@ namespace TriV
 		return availableFormats[0];
 	}
 
-	VkPresentModeKHR TriVEngine::chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes)
+	VkPresentModeKHR TriVEngine::chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes) const
 	{
 		for(const auto& availablePresentMode : availablePresentModes)
 		{
@@ -320,7 +320,7 @@ namespace TriV
 		return VK_PRESENT_MODE_FIFO_KHR;
 	}
 
-	VkExtent2D TriVEngine::chooseSwapExtent(const VkSurfaceCapabilitiesKHR & capabilities)
+	VkExtent2D TriVEngine::chooseSwapExtent(const VkSurfaceCapabilitiesKHR & capabilities) const
 	{
 		if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max())
 		{
@@ -383,7 +383,7 @@ namespace TriV
 		createInfo.imageFormat = surfaceFormat.format;
 		createInfo.imageColorSpace = surfaceFormat.colorSpace;
 		//TODO: COMMENT OUT
-		createInfo.imageExtent = extent;
+		//createInfo.imageExtent = extent;
 		createInfo.imageArrayLayers = 1;
 		createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
@@ -406,7 +406,7 @@ namespace TriV
 		createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
 		createInfo.presentMode = presentMode;
 		createInfo.clipped = VK_TRUE;
-		createInfo.oldSwapchain = nullptr;
+		createInfo.oldSwapchain = VK_NULL_HANDLE;
 
 		if(vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapChain) != VK_SUCCESS)
 		{
@@ -469,7 +469,7 @@ namespace TriV
 		vkGetDeviceQueue(device, indices.presentFamily, 0, &presentQueue);
 	}
 
-	void TriVEngine::createGraphicsPipeline()
+	void TriVEngine::createGraphicsPipeline() const
 	{
 		std::cout << "LOADING SHADERS:" << std::endl;
 		auto vertexShaderCode = loadShader("Shaders/vert.spv");
@@ -514,7 +514,7 @@ namespace TriV
 		return buffer;
 	}
 
-	void TriVEngine::createShaderModule(const std::vector<char>& code, VDeleter<VkShaderModule>& shaderModule)
+	void TriVEngine::createShaderModule(const std::vector<char>& code, VDeleter<VkShaderModule>& shaderModule) const
 	{
 		VkShaderModuleCreateInfo createInfo = {};
 		createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
@@ -529,7 +529,7 @@ namespace TriV
 		std::cout << "SUCCESSFULLY CREATED SHADER MODULE!" << std::endl;
 	}
 
-	bool TriVEngine::checkValidationLayerSupport()
+	bool TriVEngine::checkValidationLayerSupport() const
 	{
 		uint32_t layerCount;
 		vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
@@ -555,7 +555,7 @@ namespace TriV
 		return true;
 	}
 
-	std::vector<const char*> TriVEngine::getRequiredExtensions()
+	std::vector<const char*> TriVEngine::getRequiredExtensions() const
 	{
 		std::vector<const char*> extensions;
 		uint32_t glfwExtensionCount = 0;

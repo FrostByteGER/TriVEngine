@@ -68,23 +68,23 @@ namespace TriV
 		void initWindow();
 		void createInstance();
 		void pickPhysicalDevice();
-		uint64_t rateDeviceSuitability(VkPhysicalDevice device);
-		QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
-		bool checkDeviceExtensionSupport(VkPhysicalDevice device);
-		SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
-		VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
-		VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
-		VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
+		uint64_t rateDeviceSuitability(VkPhysicalDevice device) const;
+		QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device) const;
+		bool checkDeviceExtensionSupport(VkPhysicalDevice device) const;
+		SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device) const;
+		VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats) const;
+		VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes) const;
+		VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities) const;
 		void createImageViews();
 		void createSwapChain();
 		void createLogicalDevice();
-		void createGraphicsPipeline();
-		void createShaderModule(const std::vector<char>& code, VDeleter<VkShaderModule>& shaderModule);
+		void createGraphicsPipeline() const;
+		void createShaderModule(const std::vector<char>& code, VDeleter<VkShaderModule>& shaderModule) const;
 		void initVulkan();
 		void createSurface();
 		void mainLoop();
-		bool checkValidationLayerSupport();
-		std::vector<const char*> getRequiredExtensions();
+		bool checkValidationLayerSupport() const;
+		std::vector<const char*> getRequiredExtensions() const;
 
 		static std::vector<char> loadShader(const std::string& shaderpath);
 
