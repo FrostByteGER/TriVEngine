@@ -2,9 +2,11 @@
 
 #define GLFW_INCLUDE_VULKAN
 
+
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
 #include <vector>
+#include <iostream>
 
 #include "VDeleter.h"
 
@@ -39,24 +41,28 @@ namespace TriV
 
 	private:
 
-		static VkBool32 DebugCallback(VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objType, uint64_t obj, size_t location, int32_t code, const char* layerPrefix, const char* msg, void* userData);
-		static VkResult CreateDebugReportCallbackEXT(VkInstance instance, const VkDebugReportCallbackCreateInfoEXT * pCreateInfo, const VkAllocationCallbacks * pAllocator, VkDebugReportCallbackEXT * pCallback);
+		// Static Methods
+		static std::vector<char> loadShader(const std::string& shaderpath);
+		static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallback(VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objType, uint64_t obj, size_t location, int32_t code, const char* layerPrefix, const char* msg, void* userData);
+		static VkResult CreateDebugReportCallbackEXT(VkInstance instance, const VkDebugReportCallbackCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugReportCallbackEXT* pCallback);
 		static void DestroyDebugReportCallbackEXT(VkInstance instance, VkDebugReportCallbackEXT callback, const VkAllocationCallbacks* pAllocator);
 
 		// GLFW/Vulkan Variables
 		GLFWwindow* window = nullptr;
 		VDeleter<VkInstance> instance{ vkDestroyInstance };
-		//VDeleter<VkDebugReportCallbackEXT> callback{ instance, DestroyDebugReportCallbackEXT };
-		VkDebugReportCallbackEXT callback;
+		VDeleter<VkDebugReportCallbackEXT> callback{ instance, DestroyDebugReportCallbackEXT };
+		VDeleter<VkSurfaceKHR> surface{ instance, vkDestroySurfaceKHR };
 		VDeleter<VkDevice> device{vkDestroyDevice};
-		VkPhysicalDevice physicalDevice = nullptr;
-		VkQueue graphicsQueue;
-		VkQueue presentQueue;
-		VDeleter<VkSwapchainKHR> swapChain{device, vkDestroySwapchainKHR};
+
+		VDeleter<VkSwapchainKHR> swapChain{ device, vkDestroySwapchainKHR };
 		std::vector<VkImage> swapChainImages;
 		VkFormat swapChainImageFormat;
 		VkExtent2D swapChainExtent;
 		std::vector<VDeleter<VkImageView>> swapChainImageViews;
+		
+		VkPhysicalDevice physicalDevice = nullptr;
+		VkQueue graphicsQueue;
+		VkQueue presentQueue;
 
 		// Engine Information
 		const char* WINDOW_TITLE = "TriVEngine";
@@ -65,6 +71,7 @@ namespace TriV
 		const uint32_t WINDOW_WIDTH = 1280;
 		const uint32_t WINDOW_HEIGHT = 720;
 
+		// Methods
 		void initWindow();
 		void createInstance();
 		void pickPhysicalDevice();
@@ -81,18 +88,14 @@ namespace TriV
 		void createGraphicsPipeline() const;
 		void createShaderModule(const std::vector<char>& code, VDeleter<VkShaderModule>& shaderModule) const;
 		void initVulkan();
-		void createSurface();
 		void mainLoop();
 		bool checkValidationLayerSupport() const;
 		std::vector<const char*> getRequiredExtensions() const;
-
-		static std::vector<char> loadShader(const std::string& shaderpath);
-
 		void setupDebugCallback();
+		void createSurface();
 
-		VDeleter<VkSurfaceKHR> surface{instance, vkDestroySurfaceKHR};
-
-		const std::vector<const char*> validationLayers = { 
+		// Constants
+		const std::vector<const char*> validationLayers = {
 			"VK_LAYER_LUNARG_standard_validation"
 		};
 		const std::vector<const char*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };

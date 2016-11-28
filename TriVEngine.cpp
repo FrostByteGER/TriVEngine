@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <cstring>
 
 #include "TriVEngine.h"
 #include <map>
@@ -11,8 +10,6 @@
 
 namespace TriV
 {
-
-
 
 
 	TriVEngine::TriVEngine()
@@ -60,7 +57,7 @@ namespace TriV
 
 	void TriVEngine::createSurface()
 	{
-		if(glfwCreateWindowSurface(instance, window, nullptr, &surface) != VK_SUCCESS)
+		if(glfwCreateWindowSurface(instance, window, nullptr, surface.replace()) != VK_SUCCESS)
 		{
 			throw std::runtime_error("FAILED TO CREATE WINDOW SURFACE!");
 		}
@@ -96,6 +93,17 @@ namespace TriV
 		VkInstanceCreateInfo createInfo = {};
 		createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 		createInfo.pApplicationInfo = &appInfo;
+
+		// GLFW Extensions
+		auto glfwExtensions = getRequiredExtensions();
+		createInfo.enabledExtensionCount = static_cast<uint32_t>(glfwExtensions.size());
+		createInfo.ppEnabledExtensionNames = glfwExtensions.data();
+		std::cout << "Required Vulkan Extensions: " << std::endl;
+		for (const auto& extension : glfwExtensions)
+		{
+			std::cout << "\t" << extension << std::endl;
+		}
+
 		if(enableValidationLayers)
 		{
 			createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
@@ -115,20 +123,9 @@ namespace TriV
 		{
 			std::cout << "\t" << extension.extensionName << std::endl;
 		}
-	
-		// GLFW Extensions
-		auto glfwExtensions = getRequiredExtensions();
-		createInfo.enabledExtensionCount = static_cast<uint32_t>(glfwExtensions.size());
-		createInfo.ppEnabledExtensionNames = glfwExtensions.data();
-		createInfo.enabledLayerCount = 0;
-		std::cout << "Required Vulkan Extensions: " << std::endl;
-		for(const auto& extension : glfwExtensions)
-		{
-			std::cout << "\t" << extension << std::endl;
-		}
-	
+
 		// Create the actual instance
-		VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
+		VkResult result = vkCreateInstance(&createInfo, nullptr, instance.replace());
 	
 		if (result != VK_SUCCESS)
 		{
@@ -144,7 +141,7 @@ namespace TriV
 
 		if(deviceCount == 0)
 		{
-			throw std::runtime_error("FAILED TO FIND GPUS WITH VULKAN SUPPORT!");
+			throw std::runtime_error("FAILED TO FIND GPUs WITH VULKAN SUPPORT!");
 		}
 
 		std::vector<VkPhysicalDevice> devices(deviceCount);
@@ -353,7 +350,7 @@ namespace TriV
 			createInfo.subresourceRange.baseArrayLayer = 0;
 			createInfo.subresourceRange.layerCount = 1;
 
-			if(vkCreateImageView(device, &createInfo, nullptr, &swapChainImageViews[i]) != VK_SUCCESS)
+			if(vkCreateImageView(device, &createInfo, nullptr, swapChainImageViews[i].replace()) != VK_SUCCESS)
 			{
 				throw std::runtime_error("FAILED TO CREATE IMAGE VIEWS!");
 			}
@@ -382,8 +379,7 @@ namespace TriV
 		createInfo.minImageCount = imageCount;
 		createInfo.imageFormat = surfaceFormat.format;
 		createInfo.imageColorSpace = surfaceFormat.colorSpace;
-		//TODO: COMMENT OUT
-		//createInfo.imageExtent = extent;
+		createInfo.imageExtent = extent;
 		createInfo.imageArrayLayers = 1;
 		createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
@@ -408,7 +404,7 @@ namespace TriV
 		createInfo.clipped = VK_TRUE;
 		createInfo.oldSwapchain = VK_NULL_HANDLE;
 
-		if(vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapChain) != VK_SUCCESS)
+		if(vkCreateSwapchainKHR(device, &createInfo, nullptr, swapChain.replace()) != VK_SUCCESS)
 		{
 			throw std::runtime_error("FAILED TO CREATE SWAP-CHAIN!");
 		}
@@ -460,7 +456,7 @@ namespace TriV
 			createInfo.enabledLayerCount = 0;
 		}
 
-		if(vkCreateDevice(physicalDevice, &createInfo, nullptr, &device) != VK_SUCCESS)
+		if(vkCreateDevice(physicalDevice, &createInfo, nullptr, device.replace()) != VK_SUCCESS)
 		{
 			throw std::runtime_error("FAILED TO CREATE LOGICAL DEVICE!");
 		}
@@ -521,7 +517,7 @@ namespace TriV
 		createInfo.codeSize = code.size();
 		createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
 
-		if(vkCreateShaderModule(device, &createInfo, nullptr, &shaderModule) != VK_SUCCESS)
+		if(vkCreateShaderModule(device, &createInfo, nullptr, shaderModule.replace()) != VK_SUCCESS)
 		{
 			throw std::runtime_error("FAILED TO CREATE SHADER MODULE!");
 		}
@@ -582,20 +578,19 @@ namespace TriV
 
 		VkDebugReportCallbackCreateInfoEXT createInfo = {};
 		createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT;
-		createInfo.flags = VK_DEBUG_REPORT_ERROR_BIT_EXT | VK_DEBUG_REPORT_WARNING_BIT_EXT | VK_DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT;
-		createInfo.pfnCallback = reinterpret_cast<PFN_vkDebugReportCallbackEXT>(DebugCallback);
+		createInfo.flags = VK_DEBUG_REPORT_ERROR_BIT_EXT | VK_DEBUG_REPORT_WARNING_BIT_EXT;
+		createInfo.pfnCallback = DebugCallback;
 
-		auto CreateDebugReportCallback = reinterpret_cast<PFN_vkCreateDebugReportCallbackEXT>(vkGetInstanceProcAddr(instance, "vkCreateDebugReportCallbackEXT"));
-
-		if (!CreateDebugReportCallback || CreateDebugReportCallbackEXT(instance, &createInfo, nullptr, &callback) != VK_SUCCESS) {
+		if (CreateDebugReportCallbackEXT(instance, &createInfo, nullptr, callback.replace()) != VK_SUCCESS) {
 			throw std::runtime_error("FAILED TO SET UP DEBUG CALLBACK!");
 		}
 
 		std::cout << "SUCCESSFULLY SET UP DEBUG CALLBACK" << std::endl;
 	}
 
-	VkBool32 TriVEngine::DebugCallback(VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objType, uint64_t obj, size_t location, int32_t code, const char* layerPrefix, const char* msg, void* userData) {
+	VKAPI_ATTR VkBool32 VKAPI_CALL TriVEngine::DebugCallback(VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objType, uint64_t obj, size_t location, int32_t code, const char* layerPrefix, const char* msg, void* userData) {
 		std::cerr << "validation layer: " << msg << std::endl;
+
 		return VK_FALSE;
 	}
 
@@ -605,11 +600,12 @@ namespace TriV
 		if (func != nullptr) {
 			return func(instance, pCreateInfo, pAllocator, pCallback);
 		}
-		return VK_ERROR_EXTENSION_NOT_PRESENT;
+		else {
+			return VK_ERROR_EXTENSION_NOT_PRESENT;
+		}
 	}
 
-	void TriVEngine::DestroyDebugReportCallbackEXT(VkInstance instance, VkDebugReportCallbackEXT callback, const VkAllocationCallbacks * pAllocator)
-	{
+	void TriVEngine::DestroyDebugReportCallbackEXT(VkInstance instance, VkDebugReportCallbackEXT callback, const VkAllocationCallbacks* pAllocator) {
 		std::cout << "DESTROYING DEBUG REPORT CALLBACK!" << std::endl;
 		auto func = reinterpret_cast<PFN_vkDestroyDebugReportCallbackEXT>(vkGetInstanceProcAddr(instance, "vkDestroyDebugReportCallbackEXT"));
 		if (func != nullptr) {
