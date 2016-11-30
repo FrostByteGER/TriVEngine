@@ -66,6 +66,11 @@ namespace TriV
 		VDeleter<VkRenderPass> renderPass{device, vkDestroyRenderPass};
 		VDeleter<VkPipelineLayout> pipelineLayout{ device, vkDestroyPipelineLayout };
 		VDeleter<VkPipeline> graphicsPipeline{ device, vkDestroyPipeline };
+		std::vector<VDeleter<VkFramebuffer>> swapChainFramebuffers;
+		VDeleter<VkCommandPool> commandPool{device, vkDestroyCommandPool};
+		std::vector<VkCommandBuffer> commandBuffers;
+		VDeleter<VkSemaphore> imageAvailableSemaphore{ device, vkDestroySemaphore };
+		VDeleter<VkSemaphore> renderFinishedSemaphore{device, vkDestroySemaphore};
 
 		// Engine Information
 		const char* WINDOW_TITLE = "TriVEngine";
@@ -90,6 +95,13 @@ namespace TriV
 		void createLogicalDevice();
 		void createRenderPass();
 		void createGraphicsPipeline();
+		void createFramebuffers();
+		void createCommandPool();
+		void createCommandBuffers();
+		void createSemaphores();
+
+		void drawFrame();
+
 		void createShaderModule(const std::vector<char>& code, VDeleter<VkShaderModule>& shaderModule) const;
 		void initVulkan();
 		void mainLoop();
