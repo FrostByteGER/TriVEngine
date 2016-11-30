@@ -6,7 +6,6 @@
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
 #include <vector>
-#include <iostream>
 
 #include "VDeleter.h"
 
@@ -43,7 +42,7 @@ namespace TriV
 
 		// Static Methods
 		static std::vector<char> loadShader(const std::string& shaderpath);
-		static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallback(VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objType, uint64_t obj, size_t location, int32_t code, const char* layerPrefix, const char* msg, void* userData);
+		static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallback(VkDebugReportFlagsEXT flags, VkDebugReportObjectTypeEXT objType, uint64_t obj, std::size_t location, int32_t code, const char* layerPrefix, const char* msg, void* userData);
 		static VkResult CreateDebugReportCallbackEXT(VkInstance instance, const VkDebugReportCallbackCreateInfoEXT* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDebugReportCallbackEXT* pCallback);
 		static void DestroyDebugReportCallbackEXT(VkInstance instance, VkDebugReportCallbackEXT callback, const VkAllocationCallbacks* pAllocator);
 
@@ -63,6 +62,10 @@ namespace TriV
 		VkPhysicalDevice physicalDevice = nullptr;
 		VkQueue graphicsQueue;
 		VkQueue presentQueue;
+
+		VDeleter<VkRenderPass> renderPass{device, vkDestroyRenderPass};
+		VDeleter<VkPipelineLayout> pipelineLayout{ device, vkDestroyPipelineLayout };
+		VDeleter<VkPipeline> graphicsPipeline{ device, vkDestroyPipeline };
 
 		// Engine Information
 		const char* WINDOW_TITLE = "TriVEngine";
@@ -85,7 +88,8 @@ namespace TriV
 		void createImageViews();
 		void createSwapChain();
 		void createLogicalDevice();
-		void createGraphicsPipeline() const;
+		void createRenderPass();
+		void createGraphicsPipeline();
 		void createShaderModule(const std::vector<char>& code, VDeleter<VkShaderModule>& shaderModule) const;
 		void initVulkan();
 		void mainLoop();
