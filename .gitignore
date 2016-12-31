@@ -28,6 +28,10 @@
 *.a
 *.lib
 
+#Exclude specific libraries
+!Libraries/**
+!Libraries/**/*
+
 # Executables
 *.exe
 *.out
