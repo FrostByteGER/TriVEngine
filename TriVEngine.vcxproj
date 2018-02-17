@@ -22,7 +22,7 @@
     <ProjectGuid>{5FADE440-D6B5-491D-815B-FAA10B67B339}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TriVEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -125,13 +125,14 @@ for /r %%f in (*.vert, *.frag) do (
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Libraries\glm-9.8.3\glm;Libraries\glfw-3.2.1.bin.WIN64\include;$(VK_SDK_PATH)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;$(VK_HOME)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2015;$(VK_SDK_PATH)\Bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017;$(VK_HOME)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
@@ -150,7 +151,7 @@ if not exist "Shaders\" mkdir "Shaders\"
 for /r %%f in (*.vert, *.frag) do (
     :: cd "$(OutDir)Shaders\"
     cd "Shaders\"
-    "$(VK_SDK_PATH)\Bin\glslangValidator.exe" -t -V "%%f"
+    "$(VK_HOME)\Bin\glslangValidator.exe" -t -V "%%f"
 )</Command>
       <Message>Compiling Shaders to SPIR-V...</Message>
     </PostBuildEvent>
@@ -204,7 +205,7 @@ for /r %%f in (*.vert, *.frag) do (
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Libraries\glm-9.8.3\glm;Libraries\glfw-3.2.1.bin.WIN64\include;$(VK_SDK_PATH)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;$(VK_HOME)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -212,7 +213,7 @@ for /r %%f in (*.vert, *.frag) do (
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2015;$(VK_SDK_PATH)\Bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017;$(VK_HOME)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
@@ -230,7 +231,7 @@ if not exist "Shaders\" mkdir "Shaders\"
 for /r %%f in (*.vert, *.frag) do (
     :: cd "$(OutDir)Shaders\"
     cd "Shaders\"
-    "$(VK_SDK_PATH)\Bin\glslangValidator.exe" -t -V "%%f"
+    "$(VK_HOME)\Bin\glslangValidator.exe" -t -V "%%f"
 )</Command>
       <Message>Compiling Shaders to SPIR-V...</Message>
     </PostBuildEvent>
