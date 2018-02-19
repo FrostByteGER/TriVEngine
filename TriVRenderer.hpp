@@ -7,12 +7,12 @@
 #include <vulkan/vulkan.h>
 #include <vector>
 
-#include "VDeleter.h"
+#include "VDeleter.hpp"
 
 
 namespace TriV
 {
-	class TriVEngine
+	class TriVRenderer
 	{
 		struct QueueFamilyIndices
 		{
@@ -33,8 +33,8 @@ namespace TriV
 		};
 
 	public:
-		TriVEngine();
-		~TriVEngine();
+		TriVRenderer();
+		~TriVRenderer();
 
 		void initiateEngine();
 
@@ -73,9 +73,9 @@ namespace TriV
 		VDeleter<VkSemaphore> renderFinishedSemaphore{device, vkDestroySemaphore};
 
 		// Engine Information
-		const char* WINDOW_TITLE = "TriVEngine";
-		const char* APPLICATION_TITLE = "TriVEngine";
-		const char* ENGINE_TITLE = "TriVEngine";
+		const char* WINDOW_TITLE = "TriVRenderer";
+		const char* APPLICATION_TITLE = "TriVRenderer";
+		const char* ENGINE_TITLE = "TriVRenderer";
 		const uint32_t WINDOW_WIDTH = 1280;
 		const uint32_t WINDOW_HEIGHT = 720;
 

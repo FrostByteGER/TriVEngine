@@ -237,12 +237,23 @@ for /r %%f in (*.vert, *.frag) do (
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EngineClock.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="TriVActor.cpp" />
     <ClCompile Include="TriVEngine.cpp" />
+    <ClCompile Include="TriVObject.cpp" />
+    <ClCompile Include="TriVRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TriVEngine.h" />
-    <ClInclude Include="VDeleter.h" />
+    <ClInclude Include="EngineClock.hpp" />
+    <ClInclude Include="IPhysicsTickable.hpp" />
+    <ClInclude Include="IRenderable.hpp" />
+    <ClInclude Include="ITickable.hpp" />
+    <ClInclude Include="TriVActor.hpp" />
+    <ClInclude Include="TriVEngine.hpp" />
+    <ClInclude Include="TriVObject.hpp" />
+    <ClInclude Include="TriVRenderer.hpp" />
+    <ClInclude Include="VDeleter.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="default.frag" />

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "TriVEngine.h"
+#include "TriVRenderer.hpp"
 #include <stdexcept>
 #include <iostream>
 
 int main() {
-	TriV::TriVEngine engine;
+	TriV::TriVRenderer engine;
 
 	try {
 		engine.initiateEngine();
