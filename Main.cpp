@@ -3,12 +3,13 @@
 #include "TriVRenderer.hpp"
 #include <stdexcept>
 #include <iostream>
+#include "TriVEngine.hpp"
 
 int main() {
-	TriV::TriVRenderer engine;
+	TriV::Engine::Core::TriVEngine engine;
 
 	try {
-		engine.initiateEngine();
+		engine.startEngine();
 	}
 	catch (const std::runtime_error& e) {
 		std::cerr << e.what() << std::endl;

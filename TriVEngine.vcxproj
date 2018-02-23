@@ -125,15 +125,15 @@ for /r %%f in (*.vert, *.frag) do (
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;Libraries\vulkan-1.0.68.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;Libraries\vulkan-1.0.68.0\Include;Libraries\physx-3.4.1-x64\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017;Libraries\vulkan-1.0.68.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017;Libraries\vulkan-1.0.68.0\Lib;Libraries\physx-3.4.1-x64\lib-vc2017\Checked;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>vulkan-1.lib;glfw3.lib;PhysX3CHECKED_x64.lib;PhysX3CommonCHECKED_x64.lib;PxFoundationCHECKED_x64.lib;PxPvdSDKCHECKED_x64.lib;nvToolsExt64_1.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <CustomBuildStep>
@@ -145,7 +145,11 @@ for /r %%f in (*.vert, *.frag) do (
       </Message>
     </CustomBuildStep>
     <PostBuildEvent>
-      <Command>echo Compiling Shaders to SPIR-V...
+      <Command>echo Copying DEBUG/CHECKED Dlls to Target Dir...
+robocopy "$(SolutionDir)Libraries\physx-3.4.1-x64\lib-vc2017\Checked" "$(TargetDir)\" *.dll /COPY:DAT /DCOPY:T /E
+if %errorlevel% leq 3 exit 0 else exit %errorlevel%
+
+echo Compiling Shaders to SPIR-V...
 :: if not exist "$(OutDir)Shaders\" mkdir "$(OutDir)Shaders\"
 if not exist "Shaders\" mkdir "Shaders\"
 for /r %%f in (*.vert, *.frag) do (
@@ -205,16 +209,17 @@ for /r %%f in (*.vert, *.frag) do (
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;Libraries\vulkan-1.0.68.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;Libraries\vulkan-1.0.68.0\Include;Libraries\physx-3.4.1-x64\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017;Libraries\vulkan-1.0.68.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017;Libraries\vulkan-1.0.68.0\Lib;Libraries\physx-3.4.1-x64\lib-vc2017\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>vulkan-1.lib;glfw3.lib;PhysX3_x64.lib;PhysX3Common_x64.lib;PxFoundation_x64.lib;PhysX3Extensions.lib;PxPvdSDK_x64.lib;nvToolsExt64_1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
       <Command>
@@ -225,7 +230,11 @@ for /r %%f in (*.vert, *.frag) do (
       </Message>
     </CustomBuildStep>
     <PostBuildEvent>
-      <Command>echo Compiling Shaders to SPIR-V...
+      <Command>echo Copying Release Dlls to Target Dir...
+robocopy "$(SolutionDir)Libraries\physx-3.4.1-x64\lib-vc2017\Release" "$(TargetDir)\" *.dll /COPY:DAT /DCOPY:T /E
+if %errorlevel% leq 3 exit 0 else exit %errorlevel%
+
+echo Compiling Shaders to SPIR-V...
 :: if not exist "$(OutDir)Shaders\" mkdir "$(OutDir)Shaders\"
 if not exist "Shaders\" mkdir "Shaders\"
 for /r %%f in (*.vert, *.frag) do (
@@ -237,6 +246,8 @@ for /r %%f in (*.vert, *.frag) do (
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PhysicsEngine.cpp" />
+    <ClCompile Include="PhysXErrorCallback.cpp" />
     <ClCompile Include="EngineClock.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TriVActor.cpp" />
@@ -245,6 +256,9 @@ for /r %%f in (*.vert, *.frag) do (
     <ClCompile Include="TriVRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PhysicsEngine.hpp" />
+    <ClInclude Include="PhysXDefaultAllocator.hpp" />
+    <ClInclude Include="PhysXErrorCallback.hpp" />
     <ClInclude Include="EngineClock.hpp" />
     <ClInclude Include="IPhysicsTickable.hpp" />
     <ClInclude Include="IRenderable.hpp" />
