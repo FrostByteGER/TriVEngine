@@ -4,13 +4,10 @@
 #include "IRenderable.hpp"
 #include "EngineClock.hpp"
 #include "IPhysicsTickable.hpp"
-#include "PhysXErrorCallback.hpp"
-#include "PhysXDefaultAllocator.hpp"
+#include "PhysicsEngine.hpp"
 
 namespace TriV::Engine::Core
 {
-	static Engine::Physics::PhysXErrorCallback gDefaultErrorCallback;
-	static Engine::Physics::PhysXDefaultAllocator gDefaultAllocatorCallback;
 
 	class TriVEngine : ITickable, IRenderable, Physics::IPhysicsTickable
 	{
@@ -39,7 +36,7 @@ namespace TriV::Engine::Core
 		float framesPerSecond = 0;
 		float frameAccumulator = 0;
 
-
+		Engine::Physics::PhysicsEngine physicsEngine;
 
 
 		EngineClock engineClock;
