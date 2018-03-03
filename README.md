@@ -11,4 +11,5 @@ Currently, the project uses the following libraries in the specified version. Us
  - GLFW 3.2.1
  - GLM 0.9.8.5
  - VulkanSDK 1.0.68.0
+ - Nvidia PhysX SDK 3.4.1
  
