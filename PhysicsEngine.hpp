@@ -1,12 +1,17 @@
 ﻿#pragma once
+
 #include <pvd/PxPvd.h>
-#include <memory>
 #include <PxPhysics.h>
 #include "PhysXErrorCallback.hpp"
 #include "PhysXDefaultAllocator.hpp"
 #include <extensions/PxDefaultCpuDispatcher.h>
 
-namespace TriV::Engine::Physics {
+namespace TriV::Engine::Physics 
+{
+	
+	static PhysXErrorCallback gDefaultErrorCallback;
+	static PhysXDefaultAllocator gDefaultAllocatorCallback;
+	
 
 	class PhysicsEngine
 	{
@@ -17,20 +22,22 @@ namespace TriV::Engine::Physics {
 		~PhysicsEngine();
 
 		void initiatePhysicsEngine();
+		void stepPhysics(float deltaTime);
 		void shutdownPhysicsEngine();
 
-		std::shared_ptr<physx::PxFoundation> foundation;
+	private:
+		
+		physx::PxFoundation* foundation = nullptr;
 
-		std::shared_ptr<physx::PxPvd> pvdConnection;
-		std::shared_ptr<physx::PxPvdTransport> pvdTransport;
+		physx::PxPvd* pvdConnection = nullptr;
+		physx::PxPvdTransport* pvdTransport = nullptr;
 
-		std::shared_ptr<physx::PxPhysics> physics;
-		std::shared_ptr<physx::PxDefaultCpuDispatcher> dispatcher;
-		std::shared_ptr<physx::PxScene> scene;
-
+		physx::PxPhysics* physics = nullptr;
+		physx::PxDefaultCpuDispatcher* dispatcher = nullptr;
+		physx::PxScene* scene = nullptr;
+		
 		bool initiated = false;
 		
-		static PhysXErrorCallback gDefaultErrorCallback;
-		static PhysXDefaultAllocator gDefaultAllocatorCallback;
+
 	};
 }

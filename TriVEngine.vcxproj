@@ -79,7 +79,7 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -132,8 +132,8 @@ for /r %%f in (*.vert, *.frag) do (
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017;Libraries\vulkan-1.0.68.0\Lib;Libraries\physx-3.4.1-x64\lib-vc2017\Checked;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;glfw3.lib;PhysX3CHECKED_x64.lib;PhysX3CommonCHECKED_x64.lib;PxFoundationCHECKED_x64.lib;PxPvdSDKCHECKED_x64.lib;nvToolsExt64_1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017\Debug;Libraries\vulkan-1.0.68.0\Lib\Debug;Libraries\physx-3.4.1-x64\lib-vc2017\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>vulkan-1.lib;glfw3.lib;PhysX3DEBUG_x64.lib;PhysX3CommonDEBUG_x64.lib;PxFoundationDEBUG_x64.lib;PhysX3ExtensionsDEBUG.lib;PxPvdSDKDEBUG_x64.lib;nvToolsExt64_1.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <CustomBuildStep>
@@ -145,10 +145,16 @@ for /r %%f in (*.vert, *.frag) do (
       </Message>
     </CustomBuildStep>
     <PostBuildEvent>
-      <Command>echo Copying DEBUG/CHECKED Dlls to Target Dir...
-robocopy "$(SolutionDir)Libraries\physx-3.4.1-x64\lib-vc2017\Checked" "$(TargetDir)\" *.dll /COPY:DAT /DCOPY:T /E
-if %errorlevel% leq 3 exit 0 else exit %errorlevel%
+      <Command>echo Copying Nvidia PhysX DEBUG Dlls to Target Dir...
+robocopy "$(SolutionDir)Libraries\physx-3.4.1-x64\lib-vc2017\Debug" "$(TargetDir)\" *.dll /COPY:DAT /DCOPY:T /E
+if %errorlevel% leq 3 GOTO glfw else exit %errorlevel%
 
+:glfw
+echo Copying GLFW DEBUG Dlls to Target Dir...
+robocopy "$(SolutionDir)Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017\Debug" "$(TargetDir)\" *.dll /COPY:DAT /DCOPY:T /E
+if %errorlevel% leq 3 GOTO spirv else exit %errorlevel%
+
+:spirv
 echo Compiling Shaders to SPIR-V...
 :: if not exist "$(OutDir)Shaders\" mkdir "$(OutDir)Shaders\"
 if not exist "Shaders\" mkdir "Shaders\"
@@ -157,7 +163,7 @@ for /r %%f in (*.vert, *.frag) do (
     cd "Shaders\"
     "$(SolutionDir)Libraries\vulkan-1.0.68.0\Bin\glslangValidator.exe" -t -V "%%f"
 )</Command>
-      <Message>Compiling Shaders to SPIR-V...</Message>
+      <Message>Copy Debug DLLs and Compile SPIR-V Shaders.</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -218,7 +224,7 @@ for /r %%f in (*.vert, *.frag) do (
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017;Libraries\vulkan-1.0.68.0\Lib;Libraries\physx-3.4.1-x64\lib-vc2017\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017\Release;Libraries\vulkan-1.0.68.0\Lib\Release;Libraries\physx-3.4.1-x64\lib-vc2017\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;PhysX3_x64.lib;PhysX3Common_x64.lib;PxFoundation_x64.lib;PhysX3Extensions.lib;PxPvdSDK_x64.lib;nvToolsExt64_1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
@@ -230,10 +236,16 @@ for /r %%f in (*.vert, *.frag) do (
       </Message>
     </CustomBuildStep>
     <PostBuildEvent>
-      <Command>echo Copying Release Dlls to Target Dir...
+      <Command>echo Copying Nvidia PhysX RELEASE Dlls to Target Dir...
 robocopy "$(SolutionDir)Libraries\physx-3.4.1-x64\lib-vc2017\Release" "$(TargetDir)\" *.dll /COPY:DAT /DCOPY:T /E
-if %errorlevel% leq 3 exit 0 else exit %errorlevel%
+if %errorlevel% leq 3 GOTO glfw else exit %errorlevel%
 
+:glfw
+echo Copying GLFW RELEASE Dlls to Target Dir...
+robocopy "$(SolutionDir)Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017\Release" "$(TargetDir)\" *.dll /COPY:DAT /DCOPY:T /E
+if %errorlevel% leq 3 GOTO spirv else exit %errorlevel%
+
+:spirv
 echo Compiling Shaders to SPIR-V...
 :: if not exist "$(OutDir)Shaders\" mkdir "$(OutDir)Shaders\"
 if not exist "Shaders\" mkdir "Shaders\"
@@ -242,7 +254,7 @@ for /r %%f in (*.vert, *.frag) do (
     cd "Shaders\"
     "$(SolutionDir)Libraries\vulkan-1.0.68.0\Bin\glslangValidator.exe" -t -V "%%f"
 )</Command>
-      <Message>Compiling Shaders to SPIR-V...</Message>
+      <Message>Copy Release DLLs and Compile SPIR-V Shaders.</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

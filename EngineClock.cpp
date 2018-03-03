@@ -1,6 +1,6 @@
 ﻿#include "EngineClock.hpp"
 
-TriV::Engine::Core::EngineClock::EngineClock(): FrameCount(0)
+TriV::Engine::Core::EngineClock::EngineClock(): frameCount(0)
 {
 	lastEngineTime = engineClock.now();
 	lastFrameTime = frameTimer.now();
@@ -49,32 +49,32 @@ float TriV::Engine::Core::EngineClock::EngineElapsedNanoseconds()
 
 float TriV::Engine::Core::EngineClock::PhysicsAverageSeconds() const
 {
-	return std::chrono::duration_cast<std::chrono::milliseconds>(physicsTime).count() / FrameCount;
+	return std::chrono::duration_cast<std::chrono::milliseconds>(physicsTime).count() / frameCount;
 }
 
 float TriV::Engine::Core::EngineClock::UpdateAverageSeconds() const
 {
-	return std::chrono::duration_cast<std::chrono::milliseconds>(updateTime).count() / FrameCount;
+	return std::chrono::duration_cast<std::chrono::milliseconds>(updateTime).count() / frameCount;
 }
 
 float TriV::Engine::Core::EngineClock::RenderAverageSeconds() const
 {
-	return std::chrono::duration_cast<std::chrono::milliseconds>(renderTime).count() / FrameCount;
+	return std::chrono::duration_cast<std::chrono::milliseconds>(renderTime).count() / frameCount;
 }
 
 float TriV::Engine::Core::EngineClock::PhysicsAverage() const
 {
-	return std::chrono::duration_cast<std::chrono::milliseconds>(physicsTime).count() / FrameCount;
+	return std::chrono::duration_cast<std::chrono::milliseconds>(physicsTime).count() / frameCount;
 }
 
 float TriV::Engine::Core::EngineClock::UpdateAverage() const
 {
-	return std::chrono::duration_cast<std::chrono::milliseconds>(updateTime).count() / FrameCount;
+	return std::chrono::duration_cast<std::chrono::milliseconds>(updateTime).count() / frameCount;
 }
 
 float TriV::Engine::Core::EngineClock::RenderAverage() const
 {
-	return std::chrono::duration_cast<std::chrono::milliseconds>(renderTime).count() / FrameCount;
+	return std::chrono::duration_cast<std::chrono::milliseconds>(renderTime).count() / frameCount;
 }
 
 void TriV::Engine::Core::EngineClock::StartPhysicsTimer()
@@ -115,7 +115,7 @@ void TriV::Engine::Core::EngineClock::StopRenderTimer()
 ///
 float TriV::Engine::Core::EngineClock::GetFrameDelta()
 {
-	++FrameCount;
+	++frameCount;
 	const std::chrono::time_point<std::chrono::high_resolution_clock> now = frameTimer.now();
 	const float delta = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastFrameTime).count();
 	lastFrameTime = now;
@@ -127,12 +127,17 @@ float TriV::Engine::Core::EngineClock::GetFrameDelta()
 ///
 float TriV::Engine::Core::EngineClock::GetFrameDeltaSeconds()
 {
-	return GetFrameDelta() / 1000.0f;
+	return GetFrameDelta() / 100.0f;
+}
+
+uint64_t TriV::Engine::Core::EngineClock::GetFrameCount()
+{
+	return frameCount;
 }
 
 void TriV::Engine::Core::EngineClock::Reset()
 {
-	FrameCount = 0;
+	frameCount = 0;
 
 	startPhysicsTime = physicsTimer.now();
 	startRenderTime = renderTimer.now();

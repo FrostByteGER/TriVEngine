@@ -32,15 +32,35 @@ void TriV::Engine::Core::TriVEngine::initiateEngineLoop()
 	std::cout << "ENGINE: Initiating Engine Loop..." << std::endl;
 	while (!exitRequested)
 	{
+
+		frameDelta = engineClock.GetFrameDeltaSeconds();
+		frameAccumulator += frameDelta;
+		if(frameAccumulator >= 1.0f)
+		{
+			framesPerSecond = engineClock.GetFrameCount() / frameAccumulator;
+			std::cout << " FPS: " << framesPerSecond << " | Frame: " << frameDelta << "s | Render: " << engineClock.RenderAverage() << "ms | Update: " << engineClock.UpdateAverage() << "ms | Physics: " << engineClock.PhysicsAverage() << "ms" << std::endl;
+			frameAccumulator = 0.0f;
+			engineClock.Reset();
+		}
+
+		engineClock.StartPhysicsTimer();
 		tickPhysics();
+		engineClock.StopPhysicsTimer();
+
+		engineClock.StartUpdateTimer();
 		tick();
+		engineClock.StopUpdateTimer();
+
+		engineClock.StartRenderTimer();
 		render();
+		engineClock.StopRenderTimer();
 	}
 }
 
 void TriV::Engine::Core::TriVEngine::tickPhysics()
 {
 	//std::cout << "ENGINE::CORE::PHYSICS TICK" << std::endl;
+	physicsEngine.stepPhysics(1.0f/60.0f);
 }
 
 void TriV::Engine::Core::TriVEngine::tick()

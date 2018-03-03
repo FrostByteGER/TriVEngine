@@ -10,5 +10,3 @@ namespace TriV::Engine::Physics
 		void reportError(physx::PxErrorCode::Enum code, const char* message, const char* file, int line) override;
 	};
 }
-
-

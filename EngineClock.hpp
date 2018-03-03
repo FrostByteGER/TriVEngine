@@ -33,10 +33,12 @@ namespace TriV::Engine::Core
 		float GetFrameDelta();
 		float GetFrameDeltaSeconds();
 
+		uint64_t GetFrameCount();
+
 		void Reset();
 
 	private:
-		uint64_t FrameCount;
+		uint64_t frameCount;
 
 		std::chrono::high_resolution_clock engineClock;
 		std::chrono::high_resolution_clock frameTimer;
