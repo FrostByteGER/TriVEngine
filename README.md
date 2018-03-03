@@ -1,5 +1,5 @@
 # TriVEngine
-Simple Vulkan engine written in C++ with VulkanSDK, GLFW and GLM.
+Simple Vulkan engine written in C++ with Vulkan, Nvidia PhysX, GLFW and GLM.
 
 ## Visual Studio & C++
 TriVEngine is a Visual Studio 2017 project and does not support older VS version. You may try to run it on an older version, but I will not provide any support.
