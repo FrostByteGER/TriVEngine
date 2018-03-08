@@ -1,10 +1,10 @@
 ﻿#pragma once
 
 #include "ITickable.hpp"
-#include "IRenderable.hpp"
+#include "../Rendering/IRenderable.hpp"
 #include "EngineClock.hpp"
-#include "IPhysicsTickable.hpp"
-#include "PhysicsEngine.hpp"
+#include "../Physics/IPhysicsTickable.hpp"
+#include "../Physics/PhysicsEngine.hpp"
 
 namespace TriV::Engine::Core
 {

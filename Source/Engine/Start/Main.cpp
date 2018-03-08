@@ -1,9 +1,9 @@
 #pragma once
 
-#include "TriVRenderer.hpp"
+#include "../TriVRenderer.hpp"
 #include <stdexcept>
 #include <iostream>
-#include "TriVEngine.hpp"
+#include "../Core/TriVEngine.hpp"
 
 int main() {
 	TriV::Engine::Core::TriVEngine engine;

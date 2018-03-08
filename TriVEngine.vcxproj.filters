@@ -27,74 +27,74 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Source\Engine\Core\EngineClock.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Start\Main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="TriVRenderer.cpp">
+    <ClCompile Include="Source\Engine\Physics\PhysXErrorCallback.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\PhysicsEngine.cpp">
+      <Filter>Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Core\TriVActor.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Core\TriVEngine.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Core\TriVObject.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\TriVRenderer.cpp">
       <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TriVObject.cpp">
-      <Filter>Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="TriVEngine.cpp">
-      <Filter>Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="TriVActor.cpp">
-      <Filter>Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineClock.cpp">
-      <Filter>Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysXErrorCallback.cpp">
-      <Filter>Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsEngine.cpp">
-      <Filter>Engine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TriVRenderer.hpp">
+    <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\EngineClock.hpp">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Rendering\IRenderable.hpp">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\ITickable.hpp">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\PhysXErrorCallback.hpp">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp">
+      <Filter>Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\TriVActor.hpp">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\TriVEngine.hpp">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\TriVObject.hpp">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\TriVRenderer.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="VDeleter.hpp">
+    <ClInclude Include="Source\Engine\VDeleter.hpp">
       <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="TriVObject.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="TriVEngine.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="TriVActor.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ITickable.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="IRenderable.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineClock.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="IPhysicsTickable.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysXErrorCallback.hpp">
-      <Filter>Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysXDefaultAllocator.hpp">
-      <Filter>Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsEngine.hpp">
-      <Filter>Engine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="default.frag">
+    <None Include="Shaders\default.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="default.vert">
+    <None Include="Shaders\default.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
