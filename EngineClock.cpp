@@ -127,7 +127,7 @@ float TriV::Engine::Core::EngineClock::GetFrameDelta()
 ///
 float TriV::Engine::Core::EngineClock::GetFrameDeltaSeconds()
 {
-	return GetFrameDelta() / 100.0f;
+	return GetFrameDelta() / 1000.0f;
 }
 
 uint64_t TriV::Engine::Core::EngineClock::GetFrameCount()
