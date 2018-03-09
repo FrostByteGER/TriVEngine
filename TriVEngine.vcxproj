@@ -258,34 +258,33 @@ for /r %%f in (*.vert, *.frag) do (
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PhysicsEngine.cpp" />
-    <ClCompile Include="PhysXErrorCallback.cpp" />
-    <ClCompile Include="EngineClock.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="TriVActor.cpp" />
-    <ClCompile Include="TriVEngine.cpp" />
-    <ClCompile Include="TriVObject.cpp" />
-    <ClCompile Include="TriVRenderer.cpp" />
+    <ClCompile Include="Source\Engine\Physics\PhysicsEngine.cpp" />
+    <ClCompile Include="Source\Engine\Physics\PhysXErrorCallback.cpp" />
+    <ClCompile Include="Source\Engine\Core\EngineClock.cpp" />
+    <ClCompile Include="Source\Engine\Start\Main.cpp" />
+    <ClCompile Include="Source\Engine\Core\TriVActor.cpp" />
+    <ClCompile Include="Source\Engine\Core\TriVEngine.cpp" />
+    <ClCompile Include="Source\Engine\Core\TriVObject.cpp" />
+    <ClCompile Include="Source\Engine\TriVRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PhysicsEngine.hpp" />
-    <ClInclude Include="PhysXDefaultAllocator.hpp" />
-    <ClInclude Include="PhysXErrorCallback.hpp" />
-    <ClInclude Include="EngineClock.hpp" />
-    <ClInclude Include="IPhysicsTickable.hpp" />
-    <ClInclude Include="IRenderable.hpp" />
-    <ClInclude Include="ITickable.hpp" />
-    <ClInclude Include="TriVActor.hpp" />
-    <ClInclude Include="TriVEngine.hpp" />
-    <ClInclude Include="TriVObject.hpp" />
-    <ClInclude Include="TriVRenderer.hpp" />
-    <ClInclude Include="VDeleter.hpp" />
+    <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp" />
+    <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp" />
+    <ClInclude Include="Source\Engine\Physics\PhysXErrorCallback.hpp" />
+    <ClInclude Include="Source\Engine\Core\EngineClock.hpp" />
+    <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp" />
+    <ClInclude Include="Source\Engine\Rendering\IRenderable.hpp" />
+    <ClInclude Include="Source\Engine\Core\ITickable.hpp" />
+    <ClInclude Include="Source\Engine\Core\TriVActor.hpp" />
+    <ClInclude Include="Source\Engine\Core\TriVEngine.hpp" />
+    <ClInclude Include="Source\Engine\Core\TriVObject.hpp" />
+    <ClInclude Include="Source\Engine\TriVRenderer.hpp" />
+    <ClInclude Include="Source\Engine\VDeleter.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="default.frag" />
-    <None Include="default.vert" />
+    <None Include="Shaders\default.frag" />
+    <None Include="Shaders\default.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>
