@@ -26,6 +26,9 @@
     <Filter Include="Source\Engine\Start">
       <UniqueIdentifier>{8b2cec54-c10b-4930-91fc-30922067b49b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Global">
+      <UniqueIdentifier>{df4d9d17-2420-4007-ad9a-bba570429599}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Core\EngineClock.cpp">
@@ -89,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="Source\Engine\VDeleter.hpp">
       <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Global\EngineGlobals.hpp">
+      <Filter>Source\Engine\Global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

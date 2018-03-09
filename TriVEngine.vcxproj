@@ -273,6 +273,7 @@ for /r %%f in (*.vert, *.frag) do (
     <ClInclude Include="Source\Engine\Core\TriVActor.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVEngine.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVObject.hpp" />
+    <ClInclude Include="Source\Engine\Global\EngineGlobals.hpp" />
     <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp" />
     <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp" />
     <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp" />
