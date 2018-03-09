@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Quelldateien">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Headerdateien">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Ressourcendateien">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -16,78 +8,87 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{3bf31a34-921f-4aa6-8480-bc719f85b51a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine">
+    <Filter Include="Source">
+      <UniqueIdentifier>{7ef4a405-5420-493a-891b-ccbaabc6cd06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Engine">
       <UniqueIdentifier>{4f8f6975-7c8b-498b-a69c-c50125122900}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Core">
+    <Filter Include="Source\Engine\Core">
       <UniqueIdentifier>{4f183e00-6865-4eb9-94e7-d549693ef9e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Physics">
+    <Filter Include="Source\Engine\Physics">
       <UniqueIdentifier>{31880f32-4363-4cc6-a04b-077c66368618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Engine\Rendering">
+      <UniqueIdentifier>{1e3e37ac-3dc9-4c3c-ad3e-b1b051164c91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Engine\Start">
+      <UniqueIdentifier>{8b2cec54-c10b-4930-91fc-30922067b49b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Core\EngineClock.cpp">
-      <Filter>Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Engine\Start\Main.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Engine\Physics\PhysXErrorCallback.cpp">
-      <Filter>Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Engine\Physics\PhysicsEngine.cpp">
-      <Filter>Engine\Physics</Filter>
+      <Filter>Source\Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Core\TriVActor.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Source\Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Core\TriVEngine.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Source\Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Core\TriVObject.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Source\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\PhysicsEngine.cpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\PhysXErrorCallback.cpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Start\Main.cpp">
+      <Filter>Source\Engine\Start</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\TriVRenderer.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Source\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Engine\Core\EngineClock.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine\Rendering\IRenderable.hpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Source\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Core\ITickable.hpp">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp">
-      <Filter>Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine\Physics\PhysXErrorCallback.hpp">
-      <Filter>Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp">
-      <Filter>Engine\Physics</Filter>
+      <Filter>Source\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Core\TriVActor.hpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Source\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Core\TriVEngine.hpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Source\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Core\TriVObject.hpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Source\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\PhysXErrorCallback.hpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Rendering\IRenderable.hpp">
+      <Filter>Source\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\TriVRenderer.hpp">
-      <Filter>Headerdateien</Filter>
+      <Filter>Source\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\VDeleter.hpp">
-      <Filter>Headerdateien</Filter>
+      <Filter>Source\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -97,5 +98,8 @@
     <None Include="Shaders\default.vert">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="README.md" />
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
   </ItemGroup>
 </Project>

@@ -258,30 +258,33 @@ for /r %%f in (*.vert, *.frag) do (
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Engine\Physics\PhysicsEngine.cpp" />
-    <ClCompile Include="Source\Engine\Physics\PhysXErrorCallback.cpp" />
     <ClCompile Include="Source\Engine\Core\EngineClock.cpp" />
-    <ClCompile Include="Source\Engine\Start\Main.cpp" />
     <ClCompile Include="Source\Engine\Core\TriVActor.cpp" />
     <ClCompile Include="Source\Engine\Core\TriVEngine.cpp" />
     <ClCompile Include="Source\Engine\Core\TriVObject.cpp" />
+    <ClCompile Include="Source\Engine\Physics\PhysicsEngine.cpp" />
+    <ClCompile Include="Source\Engine\Physics\PhysXErrorCallback.cpp" />
+    <ClCompile Include="Source\Engine\Start\Main.cpp" />
     <ClCompile Include="Source\Engine\TriVRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp" />
-    <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp" />
-    <ClInclude Include="Source\Engine\Physics\PhysXErrorCallback.hpp" />
     <ClInclude Include="Source\Engine\Core\EngineClock.hpp" />
-    <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp" />
-    <ClInclude Include="Source\Engine\Rendering\IRenderable.hpp" />
     <ClInclude Include="Source\Engine\Core\ITickable.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVActor.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVEngine.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVObject.hpp" />
+    <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp" />
+    <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp" />
+    <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp" />
+    <ClInclude Include="Source\Engine\Physics\PhysXErrorCallback.hpp" />
+    <ClInclude Include="Source\Engine\Rendering\IRenderable.hpp" />
     <ClInclude Include="Source\Engine\TriVRenderer.hpp" />
     <ClInclude Include="Source\Engine\VDeleter.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="README.md" />
     <None Include="Shaders\default.frag" />
     <None Include="Shaders\default.vert" />
   </ItemGroup>
