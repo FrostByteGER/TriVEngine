@@ -5,6 +5,9 @@
 #include "EngineClock.hpp"
 #include "../Physics/IPhysicsTickable.hpp"
 #include "../Physics/PhysicsEngine.hpp"
+#include <vector>
+#include <memory>
+#include "TriVWorld.hpp"
 
 namespace TriV::Engine::Core
 {
@@ -26,6 +29,7 @@ namespace TriV::Engine::Core
 		void tick() override;
 		void render() override;
 
+		void shutdownWorlds();
 		void shutdownPhysics();
 		void shutdownEngine();
 
@@ -37,9 +41,9 @@ namespace TriV::Engine::Core
 		float frameAccumulator = 0;
 
 		Engine::Physics::PhysicsEngine physicsEngine;
-
-
 		EngineClock engineClock;
+
+		std::vector<std::unique_ptr<TriVWorld>> worlds;
 	};
 
 }

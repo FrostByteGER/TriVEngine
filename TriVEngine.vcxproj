@@ -262,6 +262,9 @@ for /r %%f in (*.vert, *.frag) do (
     <ClCompile Include="Source\Engine\Core\TriVActor.cpp" />
     <ClCompile Include="Source\Engine\Core\TriVEngine.cpp" />
     <ClCompile Include="Source\Engine\Core\TriVObject.cpp" />
+    <ClCompile Include="Source\Engine\Core\TriVWorld.cpp" />
+    <ClCompile Include="Source\Engine\Events\EventManager.cpp" />
+    <ClCompile Include="Source\Engine\Messaging\MessageBus.cpp" />
     <ClCompile Include="Source\Engine\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="Source\Engine\Physics\PhysXErrorCallback.cpp" />
     <ClCompile Include="Source\Engine\Start\Main.cpp" />
@@ -273,7 +276,10 @@ for /r %%f in (*.vert, *.frag) do (
     <ClInclude Include="Source\Engine\Core\TriVActor.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVEngine.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVObject.hpp" />
+    <ClInclude Include="Source\Engine\Core\TriVWorld.hpp" />
+    <ClInclude Include="Source\Engine\Events\EventManager.hpp" />
     <ClInclude Include="Source\Engine\Global\EngineGlobals.hpp" />
+    <ClInclude Include="Source\Engine\Messaging\MessageBus.hpp" />
     <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp" />
     <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp" />
     <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp" />

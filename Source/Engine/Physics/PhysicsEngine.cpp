@@ -19,13 +19,12 @@ TriV::Engine::Physics::PhysicsEngine::PhysicsEngine()
 
 TriV::Engine::Physics::PhysicsEngine::~PhysicsEngine()
 {
-	std::cout << "PHYSICS: Destroying Physics..." << std::endl;
-	shutdownPhysicsEngine();
+	std::cout << "PHYSICS: Destroying..." << std::endl;
 }
 
 void TriV::Engine::Physics::PhysicsEngine::initiatePhysicsEngine()
 {
-	std::cout << "PHYSICS: Initiating Physics..." << std::endl;
+	std::cout << "PHYSICS: Initiating..." << std::endl;
 	
 	foundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gDefaultAllocatorCallback, gDefaultErrorCallback);
 	if (!foundation)
@@ -76,7 +75,7 @@ void TriV::Engine::Physics::PhysicsEngine::initiatePhysicsEngine()
 		pvdClient->setScenePvdFlag(physx::PxPvdSceneFlag::eTRANSMIT_CONTACTS, true); 
 		pvdClient->setScenePvdFlag(physx::PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
 	}
-
+	/*
 	auto material = physics->createMaterial(0.5f, 0.5f, 0.6f);
 
 	physx::PxRigidStatic* groundPlane = physx::PxCreatePlane(*physics, physx::PxPlane(0, 1, 0, 0), *material);
@@ -98,7 +97,7 @@ void TriV::Engine::Physics::PhysicsEngine::initiatePhysicsEngine()
 		}
 	}
 	shape->release();
-
+	*/
 }
 
 void TriV::Engine::Physics::PhysicsEngine::stepPhysics(const float deltaTime)
@@ -109,12 +108,13 @@ void TriV::Engine::Physics::PhysicsEngine::stepPhysics(const float deltaTime)
 
 void TriV::Engine::Physics::PhysicsEngine::shutdownPhysicsEngine()
 {
-	std::cout << "PHYSICS: shutting down Physics..." << std::endl;
+	std::cout << "PHYSICS: shutting down..." << std::endl;
 	
 	scene->release();
 	scene = nullptr;
 	dispatcher->release();
 	dispatcher = nullptr;
+	PxCloseExtensions();
 	physics->release();
 	physics = nullptr;
 

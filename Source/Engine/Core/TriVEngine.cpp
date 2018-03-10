@@ -16,6 +16,8 @@ void TriV::Engine::Core::TriVEngine::initiateEngine()
 {
 	std::cout << "ENGINE: Initiating Engine..." << std::endl;
 	initiatePhysics();
+
+	worlds.push_back(std::make_unique<TriVWorld>());
 	initiateEngineLoop();
 }
 
@@ -54,23 +56,36 @@ void TriV::Engine::Core::TriVEngine::initiateEngineLoop()
 		engineClock.StartRenderTimer();
 		render();
 		engineClock.StopRenderTimer();
+
+		
 	}
+	shutdownEngine();
 }
 
 void TriV::Engine::Core::TriVEngine::tickPhysics()
 {
 	//std::cout << "ENGINE::CORE::PHYSICS TICK" << std::endl;
-	physicsEngine.stepPhysics(1.0f/60.0f);
+	physicsEngine.stepPhysics(frameDelta);
 }
 
 void TriV::Engine::Core::TriVEngine::tick()
 {
 	//std::cout << "ENGINE::CORE::TICK" << std::endl;
+	for(auto& world : worlds)
+	{
+		world->tick();
+	}
 }
 
 void TriV::Engine::Core::TriVEngine::render()
 {
 	//std::cout << "ENGINE::CORE::RENDER" << std::endl;
+}
+
+void TriV::Engine::Core::TriVEngine::shutdownWorlds()
+{
+	std::cout << "ENGINE: Shutting down Worlds..." << std::endl;
+	worlds.clear();
 }
 
 void TriV::Engine::Core::TriVEngine::shutdownPhysics()
@@ -82,5 +97,6 @@ void TriV::Engine::Core::TriVEngine::shutdownPhysics()
 void TriV::Engine::Core::TriVEngine::shutdownEngine()
 {
 	std::cout << "ENGINE: Shutting down Engine..." << std::endl;
+	shutdownWorlds();
 	shutdownPhysics();
 }

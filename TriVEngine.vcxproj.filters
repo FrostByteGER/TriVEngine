@@ -29,6 +29,15 @@
     <Filter Include="Source\Engine\Global">
       <UniqueIdentifier>{df4d9d17-2420-4007-ad9a-bba570429599}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Messaging">
+      <UniqueIdentifier>{1c7f7206-1a95-4f07-884b-cec80a4110a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Engine\Events">
+      <UniqueIdentifier>{467a9964-77b7-41ea-bf85-e0662cab4884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Engine\Input">
+      <UniqueIdentifier>{603bfd14-657a-4c92-b1f8-8caac0c8190d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Core\EngineClock.cpp">
@@ -54,6 +63,15 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\TriVRenderer.cpp">
       <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Core\TriVWorld.cpp">
+      <Filter>Source\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Messaging\MessageBus.cpp">
+      <Filter>Source\Engine\Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Events\EventManager.cpp">
+      <Filter>Source\Engine\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +113,15 @@
     </ClInclude>
     <ClInclude Include="Source\Engine\Global\EngineGlobals.hpp">
       <Filter>Source\Engine\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\TriVWorld.hpp">
+      <Filter>Source\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Messaging\MessageBus.hpp">
+      <Filter>Source\Engine\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Events\EventManager.hpp">
+      <Filter>Source\Engine\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
