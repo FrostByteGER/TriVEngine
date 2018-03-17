@@ -277,8 +277,13 @@ for /r %%f in (*.vert, *.frag) do (
     <ClInclude Include="Source\Engine\Core\TriVEngine.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVObject.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVWorld.hpp" />
+    <ClInclude Include="Source\Engine\Events\BaseEngineEvent.hpp" />
+    <ClInclude Include="Source\Engine\Events\EngineEvent.hpp" />
+    <ClInclude Include="Source\Engine\Events\EngineEventParams.hpp" />
+    <ClInclude Include="Source\Engine\Events\EventExecutionType.hpp" />
     <ClInclude Include="Source\Engine\Events\EventManager.hpp" />
     <ClInclude Include="Source\Engine\Global\EngineGlobals.hpp" />
+    <ClInclude Include="Source\Engine\Messaging\Message.hpp" />
     <ClInclude Include="Source\Engine\Messaging\MessageBus.hpp" />
     <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp" />
     <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp" />

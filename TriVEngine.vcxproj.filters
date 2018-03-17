@@ -123,6 +123,21 @@
     <ClInclude Include="Source\Engine\Events\EventManager.hpp">
       <Filter>Source\Engine\Events</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Events\BaseEngineEvent.hpp">
+      <Filter>Source\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Events\EngineEventParams.hpp">
+      <Filter>Source\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Events\EventExecutionType.hpp">
+      <Filter>Source\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Events\EngineEvent.hpp">
+      <Filter>Source\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Messaging\Message.hpp">
+      <Filter>Source\Engine\Messaging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\default.frag">
