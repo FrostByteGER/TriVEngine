@@ -125,14 +125,14 @@ for /r %%f in (*.vert, *.frag) do (
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;Libraries\vulkan-1.0.68.0\Include;Libraries\physx-3.4.1-x64\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;Libraries\vulkan-1.1.70.1\Include;Libraries\physx-3.4.1-x64\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017\Debug;Libraries\vulkan-1.0.68.0\Lib\Debug;Libraries\physx-3.4.1-x64\lib-vc2017\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017\Debug;Libraries\vulkan-1.1.70.1\Lib\Debug;Libraries\physx-3.4.1-x64\lib-vc2017\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;PhysX3DEBUG_x64.lib;PhysX3CommonDEBUG_x64.lib;PxFoundationDEBUG_x64.lib;PhysX3ExtensionsDEBUG.lib;PxPvdSDKDEBUG_x64.lib;nvToolsExt64_1.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
@@ -215,7 +215,7 @@ for /r %%f in (*.vert, *.frag) do (
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;Libraries\vulkan-1.0.68.0\Include;Libraries\physx-3.4.1-x64\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Libraries\glm-0.9.8.5\glm;Libraries\glfw-3.2.1.bin.WIN64\include;Libraries\vulkan-1.1.70.1\Include;Libraries\physx-3.4.1-x64\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -224,7 +224,7 @@ for /r %%f in (*.vert, *.frag) do (
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017\Release;Libraries\vulkan-1.0.68.0\Lib\Release;Libraries\physx-3.4.1-x64\lib-vc2017\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.2.1.bin.WIN64\lib-vc2017\Release;Libraries\vulkan-1.1.70.1\Lib\Release;Libraries\physx-3.4.1-x64\lib-vc2017\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;PhysX3_x64.lib;PhysX3Common_x64.lib;PxFoundation_x64.lib;PhysX3Extensions.lib;PxPvdSDK_x64.lib;nvToolsExt64_1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
