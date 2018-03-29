@@ -1,5 +1,4 @@
 #pragma once
-#include <cstdint>
 #include "EventExecutionType.hpp"
 #include <iostream>
 
@@ -15,8 +14,6 @@ namespace TriV::Engine::Core::Events
 	protected:
 		explicit BaseEngineEvent(const EventExecutionType executionType)
 		{
-			revoked = false;
-			eventID = 0;
 			this->executionType = executionType;
 		}
 
@@ -25,14 +22,10 @@ namespace TriV::Engine::Core::Events
 
 		virtual void executeEvent() = 0;
 
-		bool revoked;
-
 		BaseEngineEvent(const BaseEngineEvent& other) = default;
 
 		BaseEngineEvent(BaseEngineEvent&& other) noexcept
 			: executionType(other.executionType),
-			revoked(other.revoked),
-			eventID(other.eventID)
 		{
 		}
 
@@ -41,8 +34,6 @@ namespace TriV::Engine::Core::Events
 			if (this == &other)
 				return *this;
 			executionType = other.executionType;
-			revoked = other.revoked;
-			eventID = other.eventID;
 			return *this;
 		}
 
@@ -51,31 +42,12 @@ namespace TriV::Engine::Core::Events
 			if (this == &other)
 				return *this;
 			executionType = other.executionType;
-			revoked = other.revoked;
-			eventID = other.eventID;
 			return *this;
 		}
 
 		EventExecutionType getExecutionType() const
 		{
 			return executionType;
-		}
-
-		uint_fast64_t getEventID() const
-		{
-			return eventID;
-		}
-
-		void setEventID(const uint_fast64_t id)
-		{
-			if(eventID > 0)
-			{
-				std::cout << "Warning: EventID has already been assigned, modifying after first assignment is not allowed!" << std::endl;
-			}else
-			{
-				eventID = id;
-			}
-			
 		}
 	};
 }
