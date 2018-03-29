@@ -10,7 +10,7 @@ namespace TriV::Engine::Core::Events
 		std::any instigator;
 
 	protected:
-		EngineEventParams(std::any instigator)
+		explicit EngineEventParams(const std::any& instigator)
 		{
 			this->instigator = instigator;
 		}
