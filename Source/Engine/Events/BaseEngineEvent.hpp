@@ -8,7 +8,7 @@ namespace TriV::Engine::Core::Events
 	{
 
 	private:
-		EventExecutionType executionType;		
+		EventExecutionType executionType;
 		uint_fast64_t eventID;
 
 	protected:
@@ -25,7 +25,7 @@ namespace TriV::Engine::Core::Events
 		BaseEngineEvent(const BaseEngineEvent& other) = default;
 
 		BaseEngineEvent(BaseEngineEvent&& other) noexcept
-			: executionType(other.executionType),
+			: executionType(other.executionType)
 		{
 		}
 
