@@ -1,32 +1,50 @@
 #include "MessageBus.hpp"
-
+#include <memory>
 
 
 TriV::Engine::Core::Messaging::MessageBus::MessageBus()
 {
-
 }
 
 void TriV::Engine::Core::Messaging::MessageBus::processMessages()
 {
-	while (messageQueue.size() > 0)
+	while (subscriptions.size() > 0)
 	{
-		messageQueue.pop();
+		//subscriptions.pop();
 	}
 }
 
-void TriV::Engine::Core::Messaging::MessageBus::publishMessage(const Message msg)
+template<class T>
+void TriV::Engine::Core::Messaging::MessageBus::publishMessage(std::unique_ptr<T> msg)
 {
-	messageQueue.push(msg);
+	const MessageMap_t::const_iterator result = subscriptions.find(typeid(T));
+	if (result == subscriptions.end())
+		return;
+
+	for (IMessageSubscription* e : result->second)
+	{
+		e->deliver(msg);
+	}
 }
 
 template<class T>
-void TriV::Engine::Core::Messaging::MessageBus::subscribeToMessage(void* function)
+void TriV::Engine::Core::Messaging::MessageBus::subscribeToMessage(std::function<void(T)> function)
 {
-	
+	if (!function)
+		return; //TODO: Add Exception
+	const MessageMap_t::const_iterator result = subscriptions.find(typeid(T));
+	std::unique_ptr<MessageTokens_t> tokens = nullptr;
+	if(result == subscriptions.end())
+	{
+		tokens = std::make_unique<MessageTokens_t>();
+		//subscriptions[typeid(T)] = tokens;
+	}
+	//tokens = result->second;
+	//tokens->push_back() TODO: Insert MessageSubscription here!
+
 }
 
 template<class T>
-void TriV::Engine::Core::Messaging::MessageBus::unsubscribeFromMessage(void* function)
+void TriV::Engine::Core::Messaging::MessageBus::unsubscribeFromMessage(std::function<void(T)> function)
 {
 }
