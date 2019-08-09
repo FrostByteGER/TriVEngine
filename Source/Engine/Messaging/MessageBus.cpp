@@ -1,50 +1,70 @@
 #include "MessageBus.hpp"
 #include <memory>
+#include <algorithm>
 
-
-TriV::Engine::Core::Messaging::MessageBus::MessageBus()
+void TriV::Engine::Core::Messaging::MessageBus::subscribeToMessage(const type_info& messageType, std::function<void(Message)> function)
 {
-}
-
-void TriV::Engine::Core::Messaging::MessageBus::processMessages()
-{
-	while (subscriptions.size() > 0)
+	
+	auto pair = messageDictionary.find(messageType);
+	
+	if (pair != messageDictionary.end())
 	{
-		//subscriptions.pop();
+		pair->second.push_back(function);
+	}
+	else
+	{
+		std::vector<std::function<void(Message)>> functions = { function };
+		messageDictionary.emplace(messageType, functions);
 	}
 }
 
-template<class T>
-void TriV::Engine::Core::Messaging::MessageBus::publishMessage(std::unique_ptr<T> msg)
+void TriV::Engine::Core::Messaging::MessageBus::unsubscribeFromMessage(const type_info& messageType, std::function<void(Message)> function)
 {
-	const MessageMap_t::const_iterator result = subscriptions.find(typeid(T));
-	if (result == subscriptions.end())
-		return;
-
-	for (IMessageSubscription* e : result->second)
+	
+	auto pair = messageDictionary.find(messageType);
+	if (pair != messageDictionary.end())
 	{
-		e->deliver(msg);
+		std::vector<std::function<void(Message)>>& list = pair->second;
+		list.erase(std::remove_if(list.begin(), list.end(), [function](auto function2) {return function.target<std::function<void(Message)>>() < function2.target<std::function<void(Message)>>(); }), list.end());
 	}
 }
 
-template<class T>
-void TriV::Engine::Core::Messaging::MessageBus::subscribeToMessage(std::function<void(T)> function)
+void TriV::Engine::Core::Messaging::MessageBus::publishMessage(std::unique_ptr<Message> msg)
 {
-	if (!function)
-		return; //TODO: Add Exception
-	const MessageMap_t::const_iterator result = subscriptions.find(typeid(T));
-	std::unique_ptr<MessageTokens_t> tokens = nullptr;
-	if(result == subscriptions.end())
+	
+	auto pair = messageDictionary.find(typeid(msg));
+	if (pair != messageDictionary.end() && pair->second.size() > 0)
 	{
-		tokens = std::make_unique<MessageTokens_t>();
-		//subscriptions[typeid(T)] = tokens;
+		for (const auto& element : pair->second)
+		{
+			element(*msg);
+		}
 	}
-	//tokens = result->second;
-	//tokens->push_back() TODO: Insert MessageSubscription here!
-
 }
 
-template<class T>
-void TriV::Engine::Core::Messaging::MessageBus::unsubscribeFromMessage(std::function<void(T)> function)
+void TriV::Engine::Core::Messaging::MessageBus::cleanUp()
 {
+	std::vector<std::type_index> classesToRemove;
+	for(auto& pair : messageDictionary)
+	{
+		std::vector<std::function<void(Message)>> functionsToRemove;
+		for (const auto& f : pair.second)
+		{
+			if (!f)
+				functionsToRemove.push_back(f);
+		}
+
+		for (const auto& f : functionsToRemove)
+		{
+			pair.second.erase(std::remove_if(pair.second.begin(), pair.second.end(), [f](auto function2) {return f.target<std::function<void(Message)>>() < function2.target<std::function<void(Message)>>(); }), pair.second.end());
+		}
+
+		if (pair.second.size() == 0)
+			classesToRemove.push_back(pair.first);
+	}
+
+	for (const auto& classToRemove : classesToRemove)
+	{
+		messageDictionary.erase(std::remove_if(messageDictionary.begin(), messageDictionary.end(), [classToRemove](auto& c2) {return classToRemove == c2.first; }), messageDictionary.end());
+	}
 }

@@ -38,6 +38,9 @@
     <Filter Include="Source\Engine\Input">
       <UniqueIdentifier>{603bfd14-657a-4c92-b1f8-8caac0c8190d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Utility">
+      <UniqueIdentifier>{aac97157-d4db-45e9-96d2-45a81e260c73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Core\EngineClock.cpp">
@@ -72,6 +75,9 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Events\EventManager.cpp">
       <Filter>Source\Engine\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Utility\ServiceLocator.cpp">
+      <Filter>Source\Engine\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +143,12 @@
     </ClInclude>
     <ClInclude Include="Source\Engine\Messaging\Message.hpp">
       <Filter>Source\Engine\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Utility\ServiceLocator.hpp">
+      <Filter>Source\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Utility\IEngineService.hpp">
+      <Filter>Source\Engine\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

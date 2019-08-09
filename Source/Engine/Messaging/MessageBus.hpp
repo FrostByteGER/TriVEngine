@@ -1,53 +1,36 @@
 #pragma once
-#include <queue>
 #include "Message.hpp"
 #include <map>
 #include <memory>
 #include <functional>
+#include <typeindex>
 
 namespace TriV::Engine::Core::Messaging
 {
 
-	class IMessageSubscription
+
+	class IMessageBus
 	{
-	public:
-		virtual ~IMessageSubscription(){};
-		virtual void deliver(Message msg) = 0;
+		virtual ~IMessageBus() = default;
+		virtual void subscribeToMessage(const type_info& messageType, std::function<void(Message)> function) = 0;
+		virtual void unsubscribeFromMessage(const type_info& messageType, std::function<void(Message)> function) = 0;
+		virtual void publishMessage(std::unique_ptr<Message> msg) = 0;
+		virtual void cleanUp() = 0;
 	};
 
-	template<class T>
-	class MessageSubscription : public IMessageSubscription
+	class MessageBus : IMessageBus
 	{
 	private:
-		std::function<void(T)> function;
+		~MessageBus() override;
 
 	public:
-		void deliver(Message msg) override;
-	};
-
-	class MessageToken
-	{
-	public:
-		IMessageSubscription* message;
-	};
-
-
-	class MessageBus
-	{
-	public:
-		MessageBus();
-		~MessageBus() = default;
-
-		void processMessages();
-		template<class T> void publishMessage(std::unique_ptr<T> msg);
-		template <class T> void subscribeToMessage(std::function<void(T)> function);
-		template<class T> void unsubscribeFromMessage(std::function<void(T)> function);
+		void subscribeToMessage(const type_info& messageType, std::function<void(Message)> function) override;
+		void unsubscribeFromMessage(const type_info& messageType, std::function<void(Message)> function) override;
+		void publishMessage(std::unique_ptr<Message> msg) override;
+		void cleanUp() override;
 
 	private:
-		typedef std::vector<std::unique_ptr<IMessageSubscription>> MessageTokens_t;
-		typedef std::map<type_info, MessageTokens_t> MessageMap_t;
-		MessageMap_t subscriptions;
-
+		std::map<std::type_index, std::vector<std::function<void(Message)>>> messageDictionary;
 	};
 
 

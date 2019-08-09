@@ -18,39 +18,9 @@ namespace TriV::Engine::Core::Events
 	public:
 		~EngineEvent() = default;
 
-		EngineEvent(T parameters, EventExecutionType executionType) : BaseEngineEvent(executionType)
+		EngineEvent(T parameters, const EventExecutionType executionType) : BaseEngineEvent(executionType)
 		{
 			this->parameters = parameters;
-		}
-
-		EngineEvent(const EngineEvent& other)
-			: BaseEngineEvent(other),
-			parameters(other.parameters)
-		{
-		}
-
-		EngineEvent(EngineEvent&& other) noexcept
-			: BaseEngineEvent(std::move(other)),
-			parameters(std::move(other.parameters))
-		{
-		}
-
-		EngineEvent& operator=(const EngineEvent& other)
-		{
-			if (this == &other)
-				return *this;
-			BaseEngineEvent::operator =(other);
-			parameters = other.parameters;
-			return *this;
-		}
-
-		EngineEvent& operator=(EngineEvent&& other) noexcept
-		{
-			if (this == &other)
-				return *this;
-			BaseEngineEvent::operator =(std::move(other));
-			parameters = std::move(other.parameters);
-			return *this;
 		}
 	};
 }
