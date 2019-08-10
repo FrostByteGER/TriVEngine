@@ -25,7 +25,7 @@ void TriV::Engine::Core::TriVEngine::initiatePhysics()
 {
 	std::cout << "ENGINE: Initiating Physics..." << std::endl;
 
-	physicsEngine.initiatePhysicsEngine();
+	physicsEngine.InitiatePhysicsEngine();
 	
 }
 
@@ -65,7 +65,7 @@ void TriV::Engine::Core::TriVEngine::initiateEngineLoop()
 void TriV::Engine::Core::TriVEngine::tickPhysics()
 {
 	//std::cout << "ENGINE::CORE::PHYSICS TICK" << std::endl;
-	physicsEngine.stepPhysics(frameDelta);
+	physicsEngine.StepPhysics(frameDelta);
 }
 
 void TriV::Engine::Core::TriVEngine::tick()
@@ -91,7 +91,7 @@ void TriV::Engine::Core::TriVEngine::shutdownWorlds()
 void TriV::Engine::Core::TriVEngine::shutdownPhysics()
 {
 	std::cout << "ENGINE: Shutting down Physics..." << std::endl;
-	physicsEngine.shutdownPhysicsEngine();
+	physicsEngine.ShutdownPhysicsEngine();
 }
 
 void TriV::Engine::Core::TriVEngine::shutdownEngine()

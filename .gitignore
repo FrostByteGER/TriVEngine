@@ -28,10 +28,6 @@
 *.a
 *.lib
 
-#Exclude specific libraries
-!Libraries/**
-!Libraries/**/*
-
 # Executables
 *.exe
 *.out
@@ -289,3 +285,7 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+#Exclude specific libraries
+!Libraries/**
+!Libraries/**/*

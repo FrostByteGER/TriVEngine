@@ -3,6 +3,7 @@
 #include "TriVActor.hpp"
 #include <memory>
 #include "ITickable.hpp"
+#include <string>
 
 
 namespace TriV::Engine::Core

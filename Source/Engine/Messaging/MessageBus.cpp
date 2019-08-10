@@ -4,7 +4,7 @@
 
 void TriV::Engine::Core::Messaging::MessageBus::subscribeToMessage(const type_info& messageType, std::function<void(Message)> function)
 {
-	
+	/*
 	auto pair = messageDictionary.find(messageType);
 	
 	if (pair != messageDictionary.end())
@@ -15,23 +15,23 @@ void TriV::Engine::Core::Messaging::MessageBus::subscribeToMessage(const type_in
 	{
 		std::vector<std::function<void(Message)>> functions = { function };
 		messageDictionary.emplace(messageType, functions);
-	}
+	}*/
 }
 
 void TriV::Engine::Core::Messaging::MessageBus::unsubscribeFromMessage(const type_info& messageType, std::function<void(Message)> function)
 {
-	
+	/*
 	auto pair = messageDictionary.find(messageType);
 	if (pair != messageDictionary.end())
 	{
 		std::vector<std::function<void(Message)>>& list = pair->second;
 		list.erase(std::remove_if(list.begin(), list.end(), [function](auto function2) {return function.target<std::function<void(Message)>>() < function2.target<std::function<void(Message)>>(); }), list.end());
-	}
+	}*/
 }
 
 void TriV::Engine::Core::Messaging::MessageBus::publishMessage(std::unique_ptr<Message> msg)
 {
-	
+	/*
 	auto pair = messageDictionary.find(typeid(msg));
 	if (pair != messageDictionary.end() && pair->second.size() > 0)
 	{
@@ -39,11 +39,12 @@ void TriV::Engine::Core::Messaging::MessageBus::publishMessage(std::unique_ptr<M
 		{
 			element(*msg);
 		}
-	}
+	}*/
 }
 
 void TriV::Engine::Core::Messaging::MessageBus::cleanUp()
 {
+	/*
 	std::vector<std::type_index> classesToRemove;
 	for(auto& pair : messageDictionary)
 	{
@@ -66,5 +67,5 @@ void TriV::Engine::Core::Messaging::MessageBus::cleanUp()
 	for (const auto& classToRemove : classesToRemove)
 	{
 		messageDictionary.erase(std::remove_if(messageDictionary.begin(), messageDictionary.end(), [classToRemove](auto& c2) {return classToRemove == c2.first; }), messageDictionary.end());
-	}
+	}*/
 }

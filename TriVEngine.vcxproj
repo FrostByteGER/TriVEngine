@@ -132,8 +132,8 @@ for /r %%f in (*.vert, *.frag) do (
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.3.bin.WIN64\lib-vc2019\Debug;Libraries\vulkan-1.1.114.0\Lib\Debug;Libraries\physx-4.1.0-x64\lib-vc2019\Checked;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;glfw3.lib;PhysX3DEBUG_x64.lib;PhysX3CommonDEBUG_x64.lib;PxFoundationDEBUG_x64.lib;PhysXExtensions_static_64DEBUG.lib;PxPvdSDKDEBUG_x64.lib;nvToolsExt64_1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.3.bin.WIN64\lib-vc2019\Debug;Libraries\vulkan-1.1.114.0\Lib;Libraries\physx-4.1.0-x64\lib-vc2019\Checked;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>msvcrt.lib;msvcmrt.lib;vulkan-1.lib;glfw3.lib;PhysX_64.lib;PhysXCommon_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <CustomBuildStep>
@@ -226,8 +226,8 @@ for /r %%f in (*.vert, *.frag) do (
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libraries\glfw-3.3.bin.WIN64\lib-vc2019\Release;Libraries\vulkan-1.1.114.0\Lib\Release;Libraries\physx-4.1.0-x64\lib-vc2019\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;glfw3.lib;PhysX_64.lib;PhysXCommon_64.lib;PhysXFoundation_64.lib;PhysXExtensions_static_64.lib;PhysXPvdSDK_static_64.lib;nvToolsExt64_1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Libraries\glfw-3.3.bin.WIN64\lib-vc2019\Release;Libraries\vulkan-1.1.114.0\Lib;Libraries\physx-4.1.0-x64\lib-vc2019\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>msvcrt.lib;msvcmrt.lib;vulkan-1.lib;glfw3.lib;PhysX_64.lib;PhysXCommon_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
       <Command>
@@ -270,13 +270,16 @@ exit 0</Command>
     <ClCompile Include="Source\Engine\Core\TriVWorld.cpp" />
     <ClCompile Include="Source\Engine\Events\EventManager.cpp" />
     <ClCompile Include="Source\Engine\Messaging\MessageBus.cpp" />
+    <ClCompile Include="Source\Engine\Physics\NullPhysicsBackend.cpp" />
     <ClCompile Include="Source\Engine\Physics\PhysicsEngine.cpp" />
-    <ClCompile Include="Source\Engine\Physics\PhysXErrorCallback.cpp" />
+    <ClCompile Include="Source\Engine\Physics\PhysX\PhysXBackend.cpp" />
+    <ClCompile Include="Source\Engine\Physics\PhysX\PhysXErrorCallback.cpp" />
     <ClCompile Include="Source\Engine\Start\Main.cpp" />
     <ClCompile Include="Source\Engine\TriVRenderer.cpp" />
     <ClCompile Include="Source\Engine\Utility\ServiceLocator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Premake.lua" />
     <ClInclude Include="Source\Engine\Core\EngineClock.hpp" />
     <ClInclude Include="Source\Engine\Core\ITickable.hpp" />
     <ClInclude Include="Source\Engine\Core\TriVActor.hpp" />
@@ -291,10 +294,13 @@ exit 0</Command>
     <ClInclude Include="Source\Engine\Global\EngineGlobals.hpp" />
     <ClInclude Include="Source\Engine\Messaging\Message.hpp" />
     <ClInclude Include="Source\Engine\Messaging\MessageBus.hpp" />
+    <ClInclude Include="Source\Engine\Physics\IPhysicsBackend.hpp" />
     <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp" />
+    <ClInclude Include="Source\Engine\Physics\NullPhysicsBackend.hpp" />
     <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp" />
-    <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp" />
-    <ClInclude Include="Source\Engine\Physics\PhysXErrorCallback.hpp" />
+    <ClInclude Include="Source\Engine\Physics\PhysX\PhysXBackend.hpp" />
+    <ClInclude Include="Source\Engine\Physics\PhysX\PhysXDefaultAllocator.hpp" />
+    <ClInclude Include="Source\Engine\Physics\PhysX\PhysXErrorCallback.hpp" />
     <ClInclude Include="Source\Engine\Rendering\IRenderable.hpp" />
     <ClInclude Include="Source\Engine\TriVRenderer.hpp" />
     <ClInclude Include="Source\Engine\Utility\IEngineService.hpp" />

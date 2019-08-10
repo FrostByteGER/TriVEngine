@@ -58,9 +58,6 @@
     <ClCompile Include="Source\Engine\Physics\PhysicsEngine.cpp">
       <Filter>Source\Engine\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Physics\PhysXErrorCallback.cpp">
-      <Filter>Source\Engine\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Engine\Start\Main.cpp">
       <Filter>Source\Engine\Start</Filter>
     </ClCompile>
@@ -79,6 +76,13 @@
     <ClCompile Include="Source\Engine\Utility\ServiceLocator.cpp">
       <Filter>Source\Engine\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\PhysX\PhysXBackend.cpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\PhysX\PhysXErrorCallback.cpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\NullPhysicsBackend.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\Core\EngineClock.hpp">
@@ -97,12 +101,6 @@
       <Filter>Source\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Physics\PhysicsEngine.hpp">
-      <Filter>Source\Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine\Physics\PhysXDefaultAllocator.hpp">
-      <Filter>Source\Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine\Physics\PhysXErrorCallback.hpp">
       <Filter>Source\Engine\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Physics\IPhysicsTickable.hpp">
@@ -150,6 +148,20 @@
     <ClInclude Include="Source\Engine\Utility\IEngineService.hpp">
       <Filter>Source\Engine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\IPhysicsBackend.hpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\PhysX\PhysXBackend.hpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\PhysX\PhysXDefaultAllocator.hpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\PhysX\PhysXErrorCallback.hpp">
+      <Filter>Source\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Physics\NullPhysicsBackend.hpp" />
+    <ClInclude Include="Premake.lua" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\default.frag">
