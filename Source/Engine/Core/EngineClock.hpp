@@ -33,32 +33,32 @@ namespace TriV::Engine::Core
 		float GetFrameDelta();
 		float GetFrameDeltaSeconds();
 
-		uint64_t GetFrameCount();
+		uint64_t GetFrameCount() const;
 
 		void Reset();
 
 	private:
-		uint64_t frameCount;
+		uint64_t _frameCount {};
 
-		std::chrono::high_resolution_clock engineClock;
-		std::chrono::high_resolution_clock frameTimer;
-		std::chrono::high_resolution_clock physicsTimer;
-		std::chrono::high_resolution_clock updateTimer;
-		std::chrono::high_resolution_clock renderTimer;
+		std::chrono::high_resolution_clock _engineClock;
+		std::chrono::high_resolution_clock _frameTimer;
+		std::chrono::high_resolution_clock _physicsTimer;
+		std::chrono::high_resolution_clock _updateTimer;
+		std::chrono::high_resolution_clock _renderTimer;
 
-		std::chrono::time_point<std::chrono::high_resolution_clock> lastEngineTime;
-		std::chrono::time_point<std::chrono::high_resolution_clock> lastFrameTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> _lastEngineTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> _lastFrameTime;
 
-		std::chrono::time_point<std::chrono::high_resolution_clock> startPhysicsTime;
-		std::chrono::time_point<std::chrono::high_resolution_clock> startUpdateTime;
-		std::chrono::time_point<std::chrono::high_resolution_clock> startRenderTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> _startPhysicsTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> _startUpdateTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> _startRenderTime;
 
-		std::chrono::time_point<std::chrono::high_resolution_clock> endPhysicsTime;
-		std::chrono::time_point<std::chrono::high_resolution_clock> endUpdateTime;
-		std::chrono::time_point<std::chrono::high_resolution_clock> endRenderTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> _endPhysicsTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> _endUpdateTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> _endRenderTime;
 
-		std::chrono::duration<long long, std::ratio<1, 1000000000>> physicsTime;
-		std::chrono::duration<long long, std::ratio<1, 1000000000>> updateTime;
-		std::chrono::duration<long long, std::ratio<1, 1000000000>> renderTime;
+		std::chrono::duration<long long, std::ratio<1, 1000000000>> _physicsTime;
+		std::chrono::duration<long long, std::ratio<1, 1000000000>> _updateTime;
+		std::chrono::duration<long long, std::ratio<1, 1000000000>> _renderTime;
 	};
 }

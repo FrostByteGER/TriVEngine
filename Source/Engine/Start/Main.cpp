@@ -1,4 +1,4 @@
-#pragma once
+
 
 #include "../TriVRenderer.hpp"
 #include <stdexcept>

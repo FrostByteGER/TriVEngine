@@ -6,11 +6,6 @@
 #include "PhysX/PhysXBackend.hpp"
 #endif
 
-
-TriV::Engine::Physics::PhysicsEngine::PhysicsEngine() 
-{
-}
-
 TriV::Engine::Physics::PhysicsEngine::~PhysicsEngine()
 {
 	std::cout << "PHYSICS: Destroying..." << std::endl;

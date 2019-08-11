@@ -25,7 +25,7 @@ void TriV::Engine::Physics::PhysX::PhysXBackend::InitiatePhysicsBackend()
 	{
 		std::cout << "PHYSICS: Connected to PhysX Visual Debugger instance! " << std::endl;
 	}
-#elif NDEBUG
+#elif TriV_RELEASE
 	_pvdConnection = nullptr;
 #endif
 

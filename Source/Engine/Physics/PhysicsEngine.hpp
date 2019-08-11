@@ -6,7 +6,7 @@ namespace TriV::Engine::Physics
 	class PhysicsEngine
 	{
 	public:
-		PhysicsEngine();
+		PhysicsEngine() = default;
 		~PhysicsEngine();
 
 		void InitiatePhysicsEngine();

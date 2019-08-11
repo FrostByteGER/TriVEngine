@@ -50,6 +50,7 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+[Bb]in-intermediates/
 x64/
 x86/
 bld/
@@ -285,6 +286,12 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+#Exclude Solutions and Projects
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.csproj
 
 #Exclude specific libraries
 !Libraries/**
