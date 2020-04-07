@@ -1,5 +1,6 @@
 ﻿-- Premake 5
 workspace "TriVEngine"
+	startproject "Sandbox"
 	architecture "x64"
 	configurations {"Debug", "Release"}
 
@@ -9,6 +10,7 @@ includePhysX = false
 useScripting = false
 
 project "TriVEngine"
+	location "TriVEngine"
 	kind "StaticLib"
 	staticruntime "on"
 	language "C++"
@@ -17,25 +19,28 @@ project "TriVEngine"
 	objdir ("bin-intermediates/" .. outputDir .. "/%{prj.name}")
 	files
 	{
-		"Source/**.h", 
-		"Source/**.hpp", 
-		"Source/**.cpp",
-		"Source/Scripting/**"
+		"%{prj.name}/Source/Engine/**.h", 
+		"%{prj.name}/Source/Engine/**.hpp", 
+		"%{prj.name}/Source/Engine/**.cpp"
 	}
 	
+	-- Exclude PhysX folder
 	if not includePhysX then
-		removefiles{"Source/Engine/Physics/PhysX/**"}
+		removefiles{"%{prj.name}/Source/Engine/Physics/PhysX/**"}
 	end
 	
-	if not useScripting then
-		removefiles{"Source/Scripting/**"}
+	-- Include Scripting folder
+	if useScripting then
+		files{"%{prj.name}/Source/Scripting/**"}
 	end
 	
 	includedirs
 	{
 		"Libraries/glm-0.9.9.5/glm",
 		"Libraries/glfw-3.3.bin.WIN64/include",
-		"Libraries/vulkan-1.1.114.0/Include"
+		"Libraries/vulkan-1.1.114.0/Include",
+		"Libraries/spdlog-1.3/include",
+		"Libraries/imgui-1.72b-docking"
 	}
 
 	if includePhysX then
@@ -54,7 +59,8 @@ project "TriVEngine"
 		links
 		{
 			"Libraries/glfw-3.3.bin.WIN64/lib-vc2019/Debug/glfw3.lib",
-			"Libraries/vulkan-1.1.114.0/Lib/vulkan-1.lib"
+			"Libraries/vulkan-1.1.114.0/Lib/vulkan-1.lib",
+			"Libraries/glm-0.9.9.5/lib-vc2019/Debug/glm_static.lib"
 		}
 		if includePhysX then
 			links
@@ -73,7 +79,8 @@ project "TriVEngine"
 		links
 		{
 			"Libraries/glfw-3.3.bin.WIN64/lib-vc2019/Release/glfw3.lib",
-			"Libraries/vulkan-1.1.114.0/Lib/vulkan-1.lib"
+			"Libraries/vulkan-1.1.114.0/Lib/vulkan-1.lib",
+			"Libraries/glm-0.9.9.5/lib-vc2019/Release/glm_static.lib"
 		}
 		if includePhysX then
 			links
@@ -90,3 +97,34 @@ project "TriVEngine"
 	{
 		--TODO
 	}
+	
+project "Sandbox"
+	location "Sandbox"
+	kind "ConsoleApp"
+	staticruntime "on"
+	language "C++"
+	cppdialect "C++latest"
+	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
+	objdir ("bin-intermediates/" .. outputDir .. "/%{prj.name}")
+	files
+	{
+		"%{prj.name}/Source/**.h", 
+		"%{prj.name}/Source/**.hpp", 
+		"%{prj.name}/Source/**.cpp"
+	}
+	
+	links
+	{
+		"TriVEngine"
+	}
+	
+	filter "system:windows"
+			systemversion "latest"
+	
+	filter "configurations:Debug"
+		defines { "TriV_DEBUG" }
+		symbols "on"
+		
+	filter "configurations:Release"
+		defines { "TriV_RELEASE" }
+		optimize "on"
