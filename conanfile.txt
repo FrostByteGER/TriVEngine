@@ -1,0 +1,9 @@
+[requires]
+physx/4.1.1
+spdlog/1.5.0
+imgui/1.75
+glm/0.9.9.7
+glfw/3.3.2@bincrafters/stable
+
+[generators]
+visual_studio

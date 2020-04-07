@@ -1,0 +1,66 @@
+{
+ "options": [
+  [
+   "fmt:header_only",
+   "False"
+  ],
+  [
+   "fmt:shared",
+   "False"
+  ],
+  [
+   "fmt:with_fmt_alias",
+   "False"
+  ],
+  [
+   "glfw:shared",
+   "False"
+  ],
+  [
+   "imgui:shared",
+   "False"
+  ],
+  [
+   "physx:enable_float_point_precise_math",
+   "False"
+  ],
+  [
+   "physx:enable_simd",
+   "True"
+  ],
+  [
+   "physx:release_build_type",
+   "release"
+  ],
+  [
+   "physx:shared",
+   "False"
+  ],
+  [
+   "spdlog:header_only",
+   "False"
+  ],
+  [
+   "spdlog:no_exceptions",
+   "False"
+  ],
+  [
+   "spdlog:shared",
+   "False"
+  ],
+  [
+   "spdlog:wchar_filenames",
+   "False"
+  ],
+  [
+   "spdlog:wchar_support",
+   "False"
+  ]
+ ],
+ "root": {
+  "name": null,
+  "version": null,
+  "user": null,
+  "channel": null
+ }
+}

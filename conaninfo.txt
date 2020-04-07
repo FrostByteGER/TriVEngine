@@ -1,0 +1,57 @@
+[settings]
+    arch=x86_64
+    build_type=Release
+    compiler=Visual Studio
+    compiler.runtime=MD
+    compiler.version=16
+    os=Windows
+
+[requires]
+    glfw/3.Y.Z
+    glm/0.9.9.7
+    imgui/1.Y.Z
+    physx/4.Y.Z
+    spdlog/1.Y.Z
+
+[options]
+
+
+[full_settings]
+    arch=x86_64
+    arch_build=x86_64
+    build_type=Release
+    compiler=Visual Studio
+    compiler.runtime=MD
+    compiler.version=16
+    os=Windows
+    os_build=Windows
+
+[full_requires]
+    fmt/6.1.2:3fb49604f9c2f729b85ba3115852006824e72cab
+    glfw/3.3.2@bincrafters/stable:3fb49604f9c2f729b85ba3115852006824e72cab
+    glm/0.9.9.7:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+    imgui/1.75:3fb49604f9c2f729b85ba3115852006824e72cab
+    physx/4.1.1:d9af9fa4bea788c40030ba3442c02784de02ddfe
+    spdlog/1.5.0:28483e792e861e1f7e4d0d9695a40957efacdd6b
+
+[full_options]
+    fmt:header_only=False
+    fmt:shared=False
+    fmt:with_fmt_alias=False
+    glfw:shared=False
+    imgui:shared=False
+    physx:enable_float_point_precise_math=False
+    physx:enable_simd=True
+    physx:release_build_type=release
+    physx:shared=False
+    spdlog:header_only=False
+    spdlog:no_exceptions=False
+    spdlog:shared=False
+    spdlog:wchar_filenames=False
+    spdlog:wchar_support=False
+
+[recipe_hash]
+
+
+[env]
+

@@ -1,0 +1,47 @@
+{
+ "profile_host": "[settings]\narch=x86_64\narch_build=x86_64\nbuild_type=Release\ncompiler=Visual Studio\ncompiler.runtime=MD\ncompiler.version=16\nos=Windows\nos_build=Windows\n[options]\n[build_requires]\n[env]\n",
+ "graph_lock": {
+  "nodes": {
+   "0": {
+    "pref": null,
+    "options": "fmt:header_only=False\nfmt:shared=False\nfmt:with_fmt_alias=False\nglfw:shared=False\nimgui:shared=False\nphysx:enable_float_point_precise_math=False\nphysx:enable_simd=True\nphysx:release_build_type=release\nphysx:shared=False\nspdlog:header_only=False\nspdlog:no_exceptions=False\nspdlog:shared=False\nspdlog:wchar_filenames=False\nspdlog:wchar_support=False",
+    "requires": [
+     "1",
+     "2",
+     "4",
+     "5",
+     "6"
+    ],
+    "path": "I:\\Projekte\\Visual-Studio-Workspace\\TriVEngine\\conanfile.txt"
+   },
+   "1": {
+    "pref": "physx/4.1.1#0:d9af9fa4bea788c40030ba3442c02784de02ddfe#0",
+    "options": "enable_float_point_precise_math=False\nenable_simd=True\nrelease_build_type=release\nshared=False"
+   },
+   "2": {
+    "pref": "spdlog/1.5.0#0:28483e792e861e1f7e4d0d9695a40957efacdd6b#0",
+    "options": "header_only=False\nno_exceptions=False\nshared=False\nwchar_filenames=False\nwchar_support=False\nfmt:header_only=False\nfmt:shared=False\nfmt:with_fmt_alias=False",
+    "requires": [
+     "3"
+    ]
+   },
+   "3": {
+    "pref": "fmt/6.1.2#0:3fb49604f9c2f729b85ba3115852006824e72cab#0",
+    "options": "header_only=False\nshared=False\nwith_fmt_alias=False"
+   },
+   "4": {
+    "pref": "imgui/1.75#0:3fb49604f9c2f729b85ba3115852006824e72cab#0",
+    "options": "shared=False"
+   },
+   "5": {
+    "pref": "glm/0.9.9.7#0:5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9#0",
+    "options": ""
+   },
+   "6": {
+    "pref": "glfw/3.3.2@bincrafters/stable#0:3fb49604f9c2f729b85ba3115852006824e72cab#0",
+    "options": "shared=False"
+   }
+  }
+ },
+ "version": "0.3"
+}
