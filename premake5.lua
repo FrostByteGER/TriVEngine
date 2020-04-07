@@ -24,11 +24,6 @@ project "TriVEngine"
 		"%{prj.name}/Source/Engine/**.cpp"
 	}
 	
-	-- Exclude PhysX folder
-	if not includePhysX then
-		removefiles{"%{prj.name}/Source/Engine/Physics/PhysX/**"}
-	end
-	
 	-- Include Scripting folder
 	if useScripting then
 		files{"%{prj.name}/Source/Scripting/**"}
@@ -36,16 +31,8 @@ project "TriVEngine"
 	
 	includedirs
 	{
-		"Libraries/glm-0.9.9.5/glm",
-		"Libraries/glfw-3.3.bin.WIN64/include",
-		"Libraries/vulkan-1.1.114.0/Include",
-		"Libraries/spdlog-1.3/include",
-		"Libraries/imgui-1.72b-docking"
+		"Libraries/vulkan-1.1.114.0/Include"
 	}
-
-	if includePhysX then
-		includedirs{"Libraries/physx-4.1.0-x64/include"}
-	end
 
 	--We don't want this annoying "Member not initialized" spam.
 	disablewarnings{"26495"}
@@ -58,40 +45,16 @@ project "TriVEngine"
 		symbols "on"
 		links
 		{
-			"Libraries/glfw-3.3.bin.WIN64/lib-vc2019/Debug/glfw3.lib",
-			"Libraries/vulkan-1.1.114.0/Lib/vulkan-1.lib",
-			"Libraries/glm-0.9.9.5/lib-vc2019/Debug/glm_static.lib"
+			"Libraries/vulkan-1.1.114.0/Lib/vulkan-1.lib"
 		}
-		if includePhysX then
-			links
-			{
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Checked/PhysX_static_64.lib",
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Checked/PhysXCommon_static_64.lib",
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Checked/PhysXExtensions_static_64.lib",
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Checked/PhysXFoundation_static_64.lib",
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Checked/PhysXPvdSDK_static_64.lib"
-			}
-		end
 		
 	filter "configurations:Release"
 		defines { "TriV_RELEASE" }
 		optimize "on"
 		links
 		{
-			"Libraries/glfw-3.3.bin.WIN64/lib-vc2019/Release/glfw3.lib",
-			"Libraries/vulkan-1.1.114.0/Lib/vulkan-1.lib",
-			"Libraries/glm-0.9.9.5/lib-vc2019/Release/glm_static.lib"
+			"Libraries/vulkan-1.1.114.0/Lib/vulkan-1.lib"
 		}
-		if includePhysX then
-			links
-			{
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Release/PhysX_static_64.lib",
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Release/PhysXCommon_static_64.lib",
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Release/PhysXExtensions_static_64.lib",
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Release/PhysXFoundation_static_64.lib",
-				"Libraries/physx-4.1.0-x64/lib-vc2019/Release/PhysXPvdSDK_static_64.lib"
-			}
-		end
 		
 	postbuildcommands
 	{
