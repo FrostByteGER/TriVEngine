@@ -296,6 +296,7 @@ paket-files/
 #Exclude specific libraries
 !Libraries/**
 !Libraries/**/*
-conanbuildinfo.props
-conanbuildinfo.txt
+
+#Conan
+conanbuildinfo.*
 conaninfo.txt

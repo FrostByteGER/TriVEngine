@@ -6,4 +6,4 @@ glm/0.9.9.7
 glfw/3.3.2@bincrafters/stable
 
 [generators]
-visual_studio
+premake

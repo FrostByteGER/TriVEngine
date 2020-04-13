@@ -1,5 +1,10 @@
 ﻿-- Premake 5
+
+-- Dependency Inclusion
+include("conanbuildinfo.premake.lua")
+
 workspace "TriVEngine"
+	conan_basic_setup()
 	startproject "Sandbox"
 	architecture "x64"
 	configurations {"Debug", "Release"}
@@ -17,6 +22,7 @@ project "TriVEngine"
 	cppdialect "C++latest"
 	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
 	objdir ("bin-intermediates/" .. outputDir .. "/%{prj.name}")
+	linkoptions { conan_exelinkflags }
 	files
 	{
 		"%{prj.name}/Source/Engine/**.h", 
@@ -69,6 +75,7 @@ project "Sandbox"
 	cppdialect "C++latest"
 	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
 	objdir ("bin-intermediates/" .. outputDir .. "/%{prj.name}")
+	linkoptions { conan_exelinkflags }
 	files
 	{
 		"%{prj.name}/Source/**.h", 
